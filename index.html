@@ -3,162 +3,90 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#e9e8e2" />
-    <meta
-      name="description"
-      content="Литературный объект «Остров», № 1. Осень—зима 2026."
-    />
+    <meta name="theme-color" content="#d8d4d4" />
+    <meta name="description" content="Литературный объект «Остров», № 1." />
     <title>Остров — литературный объект № 1</title>
-    <link rel="preload" href="assets/cover-photo.jpg" as="image" />
-    <link rel="preload" href="assets/cover-vellum.jpg" as="image" />
-    <link rel="stylesheet" href="styles.css?v=2" />
+    <link rel="preload" href="assets/odyssey-cover.png" as="image" />
+    <link rel="preload" href="assets/odyssey-spread-01.png" as="image" />
+    <link rel="stylesheet" href="styles.css?v=3" />
   </head>
-  <body>
+  <body data-book-state="vellum">
     <div class="ambient" aria-hidden="true"></div>
-
     <main>
       <section class="hero" aria-labelledby="page-title">
         <header class="masthead">
-          <p class="masthead__issue">№ 1 · осень—зима 2026</p>
-          <p class="masthead__place">Венеция</p>
+          <p>Литературный объект № 1</p>
+          <nav aria-label="Разделы страницы">
+            <button type="button" id="about-open">о журнале</button>
+            <button type="button" id="preorder-open">предзаказ</button>
+          </nav>
         </header>
-
         <div class="hero__intro">
+          <p class="eyebrow">Осень—зима 2026 · Венеция</p>
           <h1 id="page-title">Остров</h1>
-          <p>
-            Печатный литературный объект на русском языке, родом из Венеции.
-          </p>
+          <p>Печатный литературный объект на русском языке, родом из Венеции.</p>
         </div>
-
-        <div class="object-stage" aria-label="Обложка первого выпуска журнала">
-          <button
-            class="publication"
-            id="cover-toggle"
-            type="button"
-            aria-pressed="false"
-            aria-describedby="cover-hint"
-          >
-            <span class="publication__shadow" aria-hidden="true"></span>
-            <span class="publication__block">
-              <img
-                class="publication__photo"
-                src="assets/cover-photo.jpg"
-                alt="Обложка первого выпуска «Острова»: золотистые туфли в воде"
-              />
-              <span class="publication__vellum" aria-hidden="true">
-                <img src="assets/cover-vellum.jpg" alt="" />
-                <span class="publication__shine"></span>
+        <div class="object-stage" id="object-stage">
+          <div class="closed-book" id="closed-book">
+            <button class="cover-button" id="cover-toggle" type="button" aria-label="Снять кальку с обложки">
+              <img class="book-cover" src="assets/odyssey-cover.png" alt="Обложка книги Гомер, Одиссея" />
+              <span class="vellum" aria-hidden="true">
+                <span class="vellum__grain"></span>
+                <span class="vellum__title">Остров</span>
+                <span class="vellum__issue">литературный объект № 1</span>
               </span>
-              <span class="publication__edge" aria-hidden="true"></span>
-            </span>
-          </button>
-          <p class="object-stage__hint" id="cover-hint">
-            <span class="hint-closed">нажмите, чтобы проявить обложку</span>
-          </p>
-          <button class="read-trigger" id="read-open" type="button" aria-controls="about">
-            <span>читать</span>
-            <span aria-hidden="true">+</span>
+            </button>
+          </div>
+          <div class="open-book" id="open-book" aria-hidden="true">
+            <div class="spread-window" id="spread-window">
+              <img id="spread-image" src="assets/odyssey-spread-01.png" alt="Титульный разворот книги" />
+              <span class="page-light" aria-hidden="true"></span>
+              <button class="page-zone page-zone--previous" id="page-previous" type="button" aria-label="Предыдущий разворот"></button>
+              <button class="page-zone page-zone--next" id="page-next" type="button" aria-label="Следующий разворот"></button>
+            </div>
+            <div class="page-navigation">
+              <button id="previous-button" type="button" aria-label="Предыдущий разворот">←</button>
+              <p><span id="spread-number">1</span> / 4</p>
+              <button id="next-button" type="button" aria-label="Следующий разворот">→</button>
+            </div>
+          </div>
+          <button class="book-action" id="book-action" type="button">
+            <span id="book-action-label">снять кальку</span><span aria-hidden="true">↘</span>
           </button>
         </div>
-
         <div class="hero__order">
-          <p class="hero__order-label">Первый тираж уже печатается</p>
-          <button class="order-button" id="preorder-open" type="button" aria-controls="preorder">
-            <span>Предзаказать</span>
-            <span class="order-button__line" aria-hidden="true"></span>
-            <span aria-hidden="true">↗</span>
+          <p class="eyebrow">Первый тираж уже печатается</p>
+          <button class="order-link" id="preorder-open-secondary" type="button">
+            <span>Предзаказать</span><span aria-hidden="true">↗</span>
           </button>
-          <p class="hero__order-note">Доставка по Европе</p>
+          <p class="order-note">Доставка по Европе</p>
         </div>
       </section>
-
     </main>
-
-    <section class="about overlay-panel" id="about" aria-labelledby="about-title" aria-hidden="true">
-      <button class="panel-close" type="button" data-close-panel aria-label="Закрыть текст">×</button>
+    <section class="overlay-panel about" id="about" aria-labelledby="about-title" aria-hidden="true">
+      <button class="panel-close" type="button" data-close-panel aria-label="Закрыть">×</button>
       <div class="reading-sheet">
-        <header class="reading-sheet__header">
-          <p class="eyebrow">Литературный объект № 1</p>
-          <h2 id="about-title">Об «Острове»</h2>
-        </header>
-
-        <article class="about__text">
-          <p class="lead">
-            «Остров» — печатное литературное издание на русском языке
-            <button class="footnote-trigger" type="button" data-note="language" aria-label="Открыть примечание 1">1</button>,
-            родом из Венеции.
-          </p>
-
-          <p>
-            «Остров» возник в ситуации, когда язык, удалённый от мест своего
-            обитания, стал тревожить: с одной стороны — тем, что всё ещё управлял
-            способом мыслить и говорить, с другой — тем, что его использование
-            обязывало перестроить своё тело, свой аппарат речи так, чтобы речь
-            стала глуше, скрытнее, опрятнее.
-          </p>
-
-          <p>
-            Ей оставалось затаиться в воображении и из ситуаций, сюжетов, которые
-            мы потеряли, никогда не знали, забыли или перепутали, переправиться к
-            изнанке процессов, к изнанке смыслов.
-          </p>
-
-          <p>
-            «Остров» каталогизирует методы работы с письмом и воображением — чтобы
-            выстроить мост к другим пространствам и другим зонам сосуществования
-            языков. Этими методами могут быть проза, поэзия, эссеистика,
-            сооружение вымышленных библиотек, чтение мыслей растений и животных,
-            спиритический сеанс, асемия, эпистолы в прошлое и то, что мы ещё даже
-            не придумали.
-          </p>
-
-          <div class="contributors">
-            <p class="eyebrow">Авторы первого номера</p>
-            <p class="contributors__names">
-              <span>Станислав Снытко</span>, <span>Алексей Конаков</span>,
-              <span>Кьяра Фумаи</span>, <span>Анна Глазова</span>,
-              <span>Римма Герловина</span>, <span>Виктор Вилисов</span>,
-              <span>Михаил Бордуновский</span>, <span>Иван Неткачев</span>,
-              <span>Милена Славицка</span>, <span>Руслан Комадей</span>,
-              <span>Любовь Баркова</span>
-              <button class="footnote-trigger" type="button" data-note="authors" aria-label="Открыть примечание 2">2</button>.
-            </p>
-          </div>
-        </article>
+        <p class="eyebrow">Литературный объект № 1</p>
+        <h2 id="about-title">Об «Острове»</h2>
+        <div class="about__text">
+          <p class="lead">«Остров» — печатное литературное издание на русском языке, родом из Венеции.</p>
+          <p>«Остров» возник в ситуации, когда язык, удалённый от мест своего обитания, стал тревожить: с одной стороны — тем, что всё ещё управлял способом мыслить и говорить, с другой — тем, что его использование обязывало перестроить свой аппарат речи.</p>
+          <p>Из ситуаций, сюжетов, которые мы потеряли, никогда не знали, забыли или перепутали, журнал переправляется к изнанке процессов и смыслов.</p>
+          <p>«Остров» каталогизирует методы работы с письмом и воображением — чтобы выстроить мост к другим пространствам и другим зонам сосуществования языков.</p>
+        </div>
       </div>
     </section>
-
-    <section class="preorder overlay-panel" id="preorder" aria-labelledby="preorder-title" aria-hidden="true">
-      <button class="panel-close panel-close--light" type="button" data-close-panel aria-label="Закрыть предзаказ">×</button>
-      <div class="preorder__content" id="preorder-content">
+    <section class="overlay-panel preorder" id="preorder" aria-labelledby="preorder-title" aria-hidden="true">
+      <button class="panel-close panel-close--light" type="button" data-close-panel aria-label="Закрыть">×</button>
+      <div class="preorder__content">
         <p class="eyebrow">Первый тираж</p>
         <h2 id="preorder-title">Предзаказ</h2>
-        <p>
-          Первый выпуск уже отправился к венецианским печатникам. Пока на
-          Новых Набережных готовят тираж, вы можете помочь нам с расходами и
-          оформить предзаказ с доставкой по всей Европе через книжный Interbok.
-        </p>
-        <a class="order-button order-button--light" href="#" id="external-order">
-          <span>Перейти в Interbok</span>
-          <span class="order-button__line" aria-hidden="true"></span>
-          <span aria-hidden="true">↗</span>
-        </a>
-        <p class="preorder__secondary">
-          Для заказа в Россию:
-          <a href="mailto:ostrov.my@gmail.com">ostrov.my@gmail.com</a>
-        </p>
-        <p class="preorder__placeholder" id="order-placeholder" role="status" aria-live="polite"></p>
+        <p>Первый выпуск уже отправился к венецианским печатникам. Вы можете помочь нам с расходами и оформить предзаказ с доставкой по всей Европе.</p>
+        <a class="order-link order-link--light" href="#" id="external-order"><span>Перейти в Interbok</span><span aria-hidden="true">↗</span></a>
+        <p class="preorder__secondary">Для заказа в Россию: <a href="mailto:ostrov.my@gmail.com">ostrov.my@gmail.com</a></p>
+        <p id="order-placeholder" role="status" aria-live="polite"></p>
       </div>
     </section>
-
-    <div class="note-popover" id="note-popover" role="dialog" aria-modal="false" aria-labelledby="note-number" hidden>
-      <div class="note-popover__bar">
-        <p id="note-number">Примечание</p>
-        <button type="button" id="note-close" aria-label="Закрыть примечание">×</button>
-      </div>
-      <p id="note-copy"></p>
-    </div>
-
-    <script src="script.js?v=2"></script>
+    <script src="script.js?v=3"></script>
   </body>
 </html>
