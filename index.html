@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e9e8e2" />
+    <meta
+      name="description"
+      content="Литературный объект «Остров», № 1. Осень—зима 2026."
+    />
+    <title>Остров — литературный объект № 1</title>
+    <link rel="preload" href="assets/cover-photo.jpg" as="image" />
+    <link rel="preload" href="assets/cover-vellum.jpg" as="image" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true"></div>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <header class="masthead">
+          <p class="masthead__issue">№ 1 · осень—зима 2026</p>
+          <p class="masthead__place">Венеция</p>
+        </header>
+
+        <div class="hero__intro">
+          <h1 id="page-title">Остров</h1>
+          <p>
+            Печатный литературный объект на русском языке, родом из Венеции.
+          </p>
+        </div>
+
+        <div class="object-stage" aria-label="Обложка первого выпуска журнала">
+          <button
+            class="publication"
+            id="cover-toggle"
+            type="button"
+            aria-pressed="false"
+            aria-describedby="cover-hint"
+          >
+            <span class="publication__shadow" aria-hidden="true"></span>
+            <span class="publication__block">
+              <img
+                class="publication__photo"
+                src="assets/cover-photo.jpg"
+                alt="Обложка первого выпуска «Острова»: золотистые туфли в воде"
+              />
+              <span class="publication__vellum" aria-hidden="true">
+                <img src="assets/cover-vellum.jpg" alt="" />
+                <span class="publication__shine"></span>
+              </span>
+              <span class="publication__edge" aria-hidden="true"></span>
+            </span>
+          </button>
+          <p class="object-stage__hint" id="cover-hint">
+            <span class="hint-closed">нажмите, чтобы снять кальку</span>
+          </p>
+        </div>
+
+        <div class="hero__order">
+          <p class="hero__order-label">Первый тираж уже печатается</p>
+          <a class="order-button" href="#preorder-content" aria-label="Перейти к информации о предзаказе">
+            <span>Предзаказать</span>
+            <span class="order-button__line" aria-hidden="true"></span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <p class="hero__order-note">Доставка по Европе</p>
+        </div>
+
+        <div class="scroll-mark" aria-hidden="true">
+          <span></span>
+          <p>об объекте</p>
+        </div>
+      </section>
+
+      <section class="about" id="about" aria-labelledby="about-title">
+        <div class="about__heading">
+          <p class="eyebrow">Литературный объект № 1</p>
+          <h2 id="about-title">Язык,<br />оказавшийся<br />на острове</h2>
+        </div>
+
+        <article class="about__text">
+          <p class="lead">
+            «Остров» — печатное литературное издание на русском языке
+            <button class="footnote-trigger" type="button" data-note="language" aria-label="Открыть примечание 1">1</button>,
+            родом из Венеции.
+          </p>
+
+          <p>
+            «Остров» возник в ситуации, когда язык, удалённый от мест своего
+            обитания, стал тревожить: с одной стороны — тем, что всё ещё управлял
+            способом мыслить и говорить, с другой — тем, что его использование
+            обязывало перестроить своё тело, свой аппарат речи так, чтобы речь
+            стала глуше, скрытнее, опрятнее.
+          </p>
+
+          <p>
+            Ей оставалось затаиться в воображении и из ситуаций, сюжетов, которые
+            мы потеряли, никогда не знали, забыли или перепутали, переправиться к
+            изнанке процессов, к изнанке смыслов.
+          </p>
+
+          <p>
+            «Остров» каталогизирует методы работы с письмом и воображением — чтобы
+            выстроить мост к другим пространствам и другим зонам сосуществования
+            языков. Этими методами могут быть проза, поэзия, эссеистика,
+            сооружение вымышленных библиотек, чтение мыслей растений и животных,
+            спиритический сеанс, асемия, эпистолы в прошлое и то, что мы ещё даже
+            не придумали.
+          </p>
+
+          <div class="contributors">
+            <p class="eyebrow">Авторы первого номера</p>
+            <p class="contributors__names">
+              <span>Станислав Снытко</span>, <span>Алексей Конаков</span>,
+              <span>Кьяра Фумаи</span>, <span>Анна Глазова</span>,
+              <span>Римма Герловина</span>, <span>Виктор Вилисов</span>,
+              <span>Михаил Бордуновский</span>, <span>Иван Неткачев</span>,
+              <span>Милена Славицка</span>, <span>Руслан Комадей</span>,
+              <span>Любовь Баркова</span>
+              <button class="footnote-trigger" type="button" data-note="authors" aria-label="Открыть примечание 2">2</button>.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section class="preorder" id="preorder" aria-labelledby="preorder-title">
+        <div class="preorder__image" aria-hidden="true">
+          <img src="assets/cover-photo.jpg" alt="" />
+        </div>
+        <div class="preorder__content" id="preorder-content">
+          <p class="eyebrow">Первый тираж</p>
+          <h2 id="preorder-title">До встречи<br />на острове.</h2>
+          <p>
+            Первый выпуск уже отправился к венецианским печатникам. Пока на
+            Новых Набережных готовят тираж, вы можете помочь нам с расходами и
+            оформить предзаказ с доставкой по всей Европе через книжный Interbok.
+          </p>
+          <a class="order-button order-button--light" href="#" id="external-order">
+            <span>Предзаказать в Interbok</span>
+            <span class="order-button__line" aria-hidden="true"></span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <p class="preorder__secondary">
+            Для заказа в Россию:
+            <a href="mailto:ostrov.my@gmail.com">ostrov.my@gmail.com</a>
+          </p>
+          <p class="preorder__placeholder" id="order-placeholder" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Остров · 2026</p>
+      <button type="button" id="to-top">Наверх ↑</button>
+    </footer>
+
+    <div class="note-popover" id="note-popover" role="dialog" aria-modal="false" aria-labelledby="note-number" hidden>
+      <div class="note-popover__bar">
+        <p id="note-number">Примечание</p>
+        <button type="button" id="note-close" aria-label="Закрыть примечание">×</button>
+      </div>
+      <p id="note-copy"></p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
