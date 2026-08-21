@@ -4,6 +4,11 @@ const noteNumber = document.querySelector("#note-number");
 const noteCopy = document.querySelector("#note-copy");
 const noteClose = document.querySelector("#note-close");
 const noteTriggers = [...document.querySelectorAll(".footnote-trigger")];
+const readOpen = document.querySelector("#read-open");
+const preorderOpen = document.querySelector("#preorder-open");
+const readingPanel = document.querySelector("#about");
+const preorderPanel = document.querySelector("#preorder");
+const panelCloseButtons = [...document.querySelectorAll("[data-close-panel]")];
 
 const notes = {
   language: {
@@ -19,10 +24,42 @@ const notes = {
 };
 
 let activeTrigger = null;
+let activePanelTrigger = null;
 
 coverToggle.addEventListener("click", () => {
-  const isOpen = document.body.classList.toggle("cover-open");
-  coverToggle.setAttribute("aria-pressed", String(isOpen));
+  if (document.body.classList.contains("cover-open")) return;
+  document.body.classList.add("cover-open");
+  coverToggle.setAttribute("aria-pressed", "true");
+  coverToggle.setAttribute("aria-label", "Обложка первого выпуска «Острова» проявлена");
+});
+
+function closePanels({ returnFocus = true } = {}) {
+  document.body.classList.remove("reading-open", "preorder-open");
+  readingPanel.setAttribute("aria-hidden", "true");
+  preorderPanel.setAttribute("aria-hidden", "true");
+  closeNote();
+
+  if (returnFocus && activePanelTrigger) activePanelTrigger.focus();
+  activePanelTrigger = null;
+}
+
+function openPanel(panel, trigger) {
+  closePanels({ returnFocus: false });
+  activePanelTrigger = trigger;
+  const isReading = panel === readingPanel;
+  document.body.classList.add(isReading ? "reading-open" : "preorder-open");
+  panel.setAttribute("aria-hidden", "false");
+  window.setTimeout(() => panel.querySelector("[data-close-panel]").focus(), 120);
+}
+
+readOpen.addEventListener("click", () => openPanel(readingPanel, readOpen));
+preorderOpen.addEventListener("click", () => openPanel(preorderPanel, preorderOpen));
+panelCloseButtons.forEach((button) => button.addEventListener("click", () => closePanels()));
+
+[readingPanel, preorderPanel].forEach((panel) => {
+  panel.addEventListener("click", (event) => {
+    if (event.target === panel) closePanels();
+  });
 });
 
 function closeNote({ returnFocus = false } = {}) {
@@ -67,7 +104,15 @@ noteTriggers.forEach((trigger) => {
 noteClose.addEventListener("click", () => closeNote({ returnFocus: true }));
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && !notePopover.hidden) closeNote({ returnFocus: true });
+  if (event.key !== "Escape") return;
+  if (!notePopover.hidden) {
+    closeNote({ returnFocus: true });
+  } else if (
+    document.body.classList.contains("reading-open") ||
+    document.body.classList.contains("preorder-open")
+  ) {
+    closePanels();
+  }
 });
 
 document.addEventListener("click", (event) => {
@@ -88,8 +133,4 @@ document.querySelector("#external-order").addEventListener("click", (event) => {
   event.preventDefault();
   document.querySelector("#order-placeholder").textContent =
     "Здесь будет ссылка на страницу предзаказа.";
-});
-
-document.querySelector("#to-top").addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
 });

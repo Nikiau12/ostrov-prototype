@@ -11,7 +11,7 @@
     <title>Остров — литературный объект № 1</title>
     <link rel="preload" href="assets/cover-photo.jpg" as="image" />
     <link rel="preload" href="assets/cover-vellum.jpg" as="image" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=2" />
   </head>
   <body>
     <div class="ambient" aria-hidden="true"></div>
@@ -53,31 +53,34 @@
             </span>
           </button>
           <p class="object-stage__hint" id="cover-hint">
-            <span class="hint-closed">нажмите, чтобы снять кальку</span>
+            <span class="hint-closed">нажмите, чтобы проявить обложку</span>
           </p>
+          <button class="read-trigger" id="read-open" type="button" aria-controls="about">
+            <span>читать</span>
+            <span aria-hidden="true">+</span>
+          </button>
         </div>
 
         <div class="hero__order">
           <p class="hero__order-label">Первый тираж уже печатается</p>
-          <a class="order-button" href="#preorder-content" aria-label="Перейти к информации о предзаказе">
+          <button class="order-button" id="preorder-open" type="button" aria-controls="preorder">
             <span>Предзаказать</span>
             <span class="order-button__line" aria-hidden="true"></span>
             <span aria-hidden="true">↗</span>
-          </a>
+          </button>
           <p class="hero__order-note">Доставка по Европе</p>
-        </div>
-
-        <div class="scroll-mark" aria-hidden="true">
-          <span></span>
-          <p>об объекте</p>
         </div>
       </section>
 
-      <section class="about" id="about" aria-labelledby="about-title">
-        <div class="about__heading">
+    </main>
+
+    <section class="about overlay-panel" id="about" aria-labelledby="about-title" aria-hidden="true">
+      <button class="panel-close" type="button" data-close-panel aria-label="Закрыть текст">×</button>
+      <div class="reading-sheet">
+        <header class="reading-sheet__header">
           <p class="eyebrow">Литературный объект № 1</p>
-          <h2 id="about-title">Язык,<br />оказавшийся<br />на острове</h2>
-        </div>
+          <h2 id="about-title">Об «Острове»</h2>
+        </header>
 
         <article class="about__text">
           <p class="lead">
@@ -122,38 +125,31 @@
             </p>
           </div>
         </article>
-      </section>
+      </div>
+    </section>
 
-      <section class="preorder" id="preorder" aria-labelledby="preorder-title">
-        <div class="preorder__image" aria-hidden="true">
-          <img src="assets/cover-photo.jpg" alt="" />
-        </div>
-        <div class="preorder__content" id="preorder-content">
-          <p class="eyebrow">Первый тираж</p>
-          <h2 id="preorder-title">До встречи<br />на острове.</h2>
-          <p>
-            Первый выпуск уже отправился к венецианским печатникам. Пока на
-            Новых Набережных готовят тираж, вы можете помочь нам с расходами и
-            оформить предзаказ с доставкой по всей Европе через книжный Interbok.
-          </p>
-          <a class="order-button order-button--light" href="#" id="external-order">
-            <span>Предзаказать в Interbok</span>
-            <span class="order-button__line" aria-hidden="true"></span>
-            <span aria-hidden="true">↗</span>
-          </a>
-          <p class="preorder__secondary">
-            Для заказа в Россию:
-            <a href="mailto:ostrov.my@gmail.com">ostrov.my@gmail.com</a>
-          </p>
-          <p class="preorder__placeholder" id="order-placeholder" role="status" aria-live="polite"></p>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <p>Остров · 2026</p>
-      <button type="button" id="to-top">Наверх ↑</button>
-    </footer>
+    <section class="preorder overlay-panel" id="preorder" aria-labelledby="preorder-title" aria-hidden="true">
+      <button class="panel-close panel-close--light" type="button" data-close-panel aria-label="Закрыть предзаказ">×</button>
+      <div class="preorder__content" id="preorder-content">
+        <p class="eyebrow">Первый тираж</p>
+        <h2 id="preorder-title">Предзаказ</h2>
+        <p>
+          Первый выпуск уже отправился к венецианским печатникам. Пока на
+          Новых Набережных готовят тираж, вы можете помочь нам с расходами и
+          оформить предзаказ с доставкой по всей Европе через книжный Interbok.
+        </p>
+        <a class="order-button order-button--light" href="#" id="external-order">
+          <span>Перейти в Interbok</span>
+          <span class="order-button__line" aria-hidden="true"></span>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <p class="preorder__secondary">
+          Для заказа в Россию:
+          <a href="mailto:ostrov.my@gmail.com">ostrov.my@gmail.com</a>
+        </p>
+        <p class="preorder__placeholder" id="order-placeholder" role="status" aria-live="polite"></p>
+      </div>
+    </section>
 
     <div class="note-popover" id="note-popover" role="dialog" aria-modal="false" aria-labelledby="note-number" hidden>
       <div class="note-popover__bar">
@@ -163,6 +159,6 @@
       <p id="note-copy"></p>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
   </body>
 </html>
