@@ -9,7 +9,7 @@
     <link rel="preload" href="assets/odyssey-cover.png" as="image" />
     <link rel="preload" href="assets/cover-vellum-final.jpg" as="image" />
     <link rel="preload" href="assets/odyssey-spread-01.png" as="image" />
-    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="stylesheet" href="styles.css?v=6" />
   </head>
   <body data-book-state="vellum">
     <div class="ambient" aria-hidden="true"></div>
@@ -66,8 +66,10 @@
         </div>
         <div class="hero__order">
           <p class="eyebrow">Первый тираж уже печатается</p>
-          <button class="order-link" id="preorder-open-secondary" type="button">
+          <button class="order-button" id="preorder-open-secondary" type="button">
             <span>Предзаказать</span>
+            <span class="order-button__line" aria-hidden="true"></span>
+            <span class="order-button__marker" aria-hidden="true">↗</span>
           </button>
           <p class="order-note">Доставка по Европе</p>
         </div>
@@ -79,10 +81,43 @@
         <p class="eyebrow">Литературный объект № 1</p>
         <h2 id="about-title">Об «Острове»</h2>
         <div class="about__text">
-          <p class="lead">«Остров» — печатное литературное издание на русском языке, родом из Венеции.</p>
-          <p>«Остров» возник в ситуации, когда язык, удалённый от мест своего обитания, стал тревожить: с одной стороны — тем, что всё ещё управлял способом мыслить и говорить, с другой — тем, что его использование обязывало перестроить свой аппарат речи.</p>
-          <p>Из ситуаций, сюжетов, которые мы потеряли, никогда не знали, забыли или перепутали, журнал переправляется к изнанке процессов и смыслов.</p>
-          <p>«Остров» каталогизирует методы работы с письмом и воображением — чтобы выстроить мост к другим пространствам и другим зонам сосуществования языков.</p>
+          <p class="lead">
+            «Остров» — печатное литературное издание на русском языке
+            <button class="footnote-trigger" type="button" data-note="language" aria-label="Открыть примечание 1">1</button>,
+            родом из Венеции.
+          </p>
+          <p>
+            «Остров» возник в ситуации, когда язык, удалённый от мест своего
+            обитания, стал тревожить: с одной стороны — тем, что всё ещё управлял
+            способом мыслить и говорить, с другой — тем, что его использование
+            обязывало перестроить своё тело, свой аппарат речи так, чтобы речь
+            стала глуше, скрытнее, опрятнее.
+          </p>
+          <p>
+            Ей оставалось затаиться в воображении и из ситуаций, сюжетов, которые
+            мы потеряли, никогда не знали, забыли или перепутали, переправиться к
+            изнанке процессов, к изнанке смыслов.
+          </p>
+          <p>
+            «Остров» каталогизирует методы работы с письмом и воображением — чтобы
+            выстроить мост к другим пространствам и другим зонам сосуществования
+            языков. Этими методами могут быть проза, поэзия, эссеистика,
+            сооружение вымышленных библиотек, чтение мыслей растений и животных,
+            спиритический сеанс, асемия, эпистолы в прошлое и то, что мы ещё даже
+            не придумали.
+          </p>
+          <div class="contributors">
+            <p class="eyebrow">Авторы первого номера</p>
+            <p class="contributors__names">
+              <span>Станислав Снытко</span>, <span>Алексей Конаков</span>,
+              <span>Кьяра Фумаи</span>, <span>Анна Глазова</span>,
+              <span>Римма Герловина</span>, <span>Виктор Вилисов</span>,
+              <span>Михаил Бордуновский</span>, <span>Иван Неткачев</span>,
+              <span>Милена Славицка</span>, <span>Руслан Комадей</span>,
+              <span>Любовь Баркова</span>
+              <button class="footnote-trigger" type="button" data-note="authors" aria-label="Открыть примечание 2">2</button>.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -97,6 +132,13 @@
         <p id="order-placeholder" role="status" aria-live="polite"></p>
       </div>
     </section>
-    <script src="script.js?v=5"></script>
+    <div class="note-popover" id="note-popover" role="dialog" aria-modal="false" aria-labelledby="note-number" hidden>
+      <div class="note-popover__bar">
+        <p id="note-number">Примечание</p>
+        <button type="button" id="note-close" aria-label="Закрыть примечание">×</button>
+      </div>
+      <p id="note-copy"></p>
+    </div>
+    <script src="script.js?v=6"></script>
   </body>
 </html>
