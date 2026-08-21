@@ -7,8 +7,9 @@
     <meta name="description" content="Литературный объект «Остров», № 1." />
     <title>Остров — литературный объект № 1</title>
     <link rel="preload" href="assets/odyssey-cover.png" as="image" />
+    <link rel="preload" href="assets/cover-vellum-final.jpg" as="image" />
     <link rel="preload" href="assets/odyssey-spread-01.png" as="image" />
-    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="styles.css?v=5" />
   </head>
   <body data-book-state="vellum">
     <div class="ambient" aria-hidden="true"></div>
@@ -31,9 +32,7 @@
             <button class="cover-button" id="cover-toggle" type="button" aria-label="Снять кальку с обложки">
               <img class="book-cover" src="assets/odyssey-cover.png" alt="Обложка книги Гомер, Одиссея" />
               <span class="vellum" aria-hidden="true">
-                <span class="vellum__grain"></span>
-                <span class="vellum__title">Остров</span>
-                <span class="vellum__issue">литературный объект № 1</span>
+                <img class="vellum__art" src="assets/cover-vellum-final.jpg" alt="" />
               </span>
             </button>
           </div>
@@ -62,13 +61,13 @@
             <p class="spread-status" id="spread-status" aria-live="polite">Разворот 1 из 4</p>
           </div>
           <button class="book-action" id="book-action" type="button">
-            <span id="book-action-label">снять кальку</span><span aria-hidden="true">↘</span>
+            <span id="book-action-label">снять кальку</span>
           </button>
         </div>
         <div class="hero__order">
           <p class="eyebrow">Первый тираж уже печатается</p>
           <button class="order-link" id="preorder-open-secondary" type="button">
-            <span>Предзаказать</span><span aria-hidden="true">↗</span>
+            <span>Предзаказать</span>
           </button>
           <p class="order-note">Доставка по Европе</p>
         </div>
@@ -93,11 +92,11 @@
         <p class="eyebrow">Первый тираж</p>
         <h2 id="preorder-title">Предзаказ</h2>
         <p>Первый выпуск уже отправился к венецианским печатникам. Вы можете помочь нам с расходами и оформить предзаказ с доставкой по всей Европе.</p>
-        <a class="order-link order-link--light" href="#" id="external-order"><span>Перейти в Interbok</span><span aria-hidden="true">↗</span></a>
+        <a class="order-link order-link--light" href="#" id="external-order"><span>Перейти в Interbok</span></a>
         <p class="preorder__secondary">Для заказа в Россию: <a href="mailto:ostrov.my@gmail.com">ostrov.my@gmail.com</a></p>
         <p id="order-placeholder" role="status" aria-live="polite"></p>
       </div>
     </section>
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=5"></script>
   </body>
 </html>

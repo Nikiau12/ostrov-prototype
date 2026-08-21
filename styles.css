@@ -30,10 +30,8 @@ body[data-book-state="open"] .object-stage { width: min(68vw, 1060px); }
 .closed-book { width: 100%; transition: opacity .35s ease, transform .7s var(--ease); }
 .cover-button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; position: relative; }
 .book-cover { display: block; width: 100%; height: auto; filter: drop-shadow(0 30px 25px rgba(27,22,24,.28)); }
-.vellum { position: absolute; top: 4.7%; left: 19.6%; width: 70%; height: 87%; overflow: hidden; color: #111; background: rgba(247,243,235,.72); border-left: 1px solid rgba(255,255,255,.82); box-shadow: 8px 5px 14px rgba(20,18,18,.1); transform-origin: 14% 10%; transform: translate3d(0,0,10px); transition: transform 1s var(--ease), opacity .55s ease, filter .8s ease; backdrop-filter: blur(1.1px) saturate(.62); }
-.vellum__grain { position: absolute; inset: 0; opacity: .36; background: repeating-linear-gradient(96deg, transparent 0 7px, rgba(255,255,255,.52) 8px, transparent 10px), radial-gradient(circle at 75% 20%, rgba(255,255,255,.72), transparent 30%); animation: grain 7s ease-in-out infinite alternate; }
-.vellum__title { position: absolute; right: 7%; top: 4%; font-family: Georgia, "Times New Roman", serif; font-size: clamp(34px, 4.2vw, 70px); letter-spacing: -.07em; writing-mode: vertical-rl; }
-.vellum__issue { position: absolute; left: 8%; bottom: 5%; font-size: clamp(8px, 1vw, 13px); text-transform: uppercase; letter-spacing: .08em; }
+.vellum { position: absolute; top: 6.2%; left: 19.25%; width: 62.3%; height: 87.3%; overflow: hidden; background: #eee9e4; box-shadow: 7px 4px 13px rgba(20,18,18,.12); transform-origin: 14% 10%; transform: translate3d(0,0,10px); transition: transform 1s var(--ease), opacity .55s ease, filter .8s ease; }
+.vellum__art { display: block; width: 100%; height: 100%; object-fit: cover; }
 body[data-book-state="cover"] .vellum { transform: translate3d(-48%, 26%, 35px) rotate(-8deg) skewY(2deg); opacity: 0; filter: blur(2px); pointer-events: none; }
 body[data-book-state="open"] .closed-book { opacity: 0; transform: scale(.84) rotateY(-18deg); pointer-events: none; position: absolute; }
 .open-book { display: none; width: 100%; opacity: 0; transform: scale(.82) rotateX(7deg); }
@@ -53,18 +51,19 @@ body[data-book-state="open"] .open-book { display: block; animation: open-book .
 .leaf-shade { position: absolute; inset: 0; opacity: 0; pointer-events: none; background: linear-gradient(90deg, rgba(37,25,16,.34), transparent 28%, rgba(255,255,255,.28) 74%, rgba(54,35,22,.2)); animation: leaf-shade 1.05s ease-in-out; }
 .turning-leaf.is-backward .leaf-shade { transform: scaleX(-1); }
 .page-light { position: absolute; z-index: 8; inset: 0; pointer-events: none; background: linear-gradient(90deg, transparent 0 47%, rgba(72,53,35,.12) 49.4%, rgba(255,255,255,.18) 50.5%, transparent 53%); mix-blend-mode: multiply; }
-.page-zone { position: absolute; z-index: 10; top: 0; bottom: 0; width: 50%; padding: 0; border: 0; outline: 0; background: transparent; cursor: w-resize; }
+.page-zone { position: absolute; z-index: 10; top: 0; bottom: 0; width: 50%; padding: 0; border: 0; outline: 0; background: transparent; cursor: pointer; }
 .page-zone--previous { left: 0; }
-.page-zone--next { right: 0; cursor: e-resize; }
+.page-zone--next { right: 0; }
 .page-zone:disabled { cursor: default; }
 .page-zone:focus-visible { outline: 0; }
 .spread-status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-.book-action { margin: 14px auto 0; padding: 5px 0 7px; border: 0; border-bottom: 1px solid currentColor; background: transparent; display: flex; gap: 18px; align-items: center; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+.book-action { margin: 14px auto 0; padding: 5px 0; border: 0; background: transparent; display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: color .25s ease, letter-spacing .25s ease; }
+.book-action:hover { color: var(--red); letter-spacing: .14em; }
 body[data-book-state="open"] .book-action { display: none; }
 .hero__order { align-self: end; justify-self: end; margin-bottom: clamp(48px, 9vh, 110px); width: min(100%, 270px); transition: opacity .45s ease; }
 body[data-book-state="open"] .hero__intro, body[data-book-state="open"] .hero__order { opacity: .14; }
-.order-link { display: flex; align-items: center; justify-content: space-between; width: 100%; margin: 14px 0 10px; padding: 11px 0; border: 0; border-top: 1px solid currentColor; border-bottom: 1px solid currentColor; background: none; text-decoration: none; font-family: Georgia, "Times New Roman", serif; font-size: clamp(25px, 2.4vw, 39px); cursor: pointer; transition: letter-spacing .25s ease, color .25s ease; }
-.order-link:hover { color: var(--red); letter-spacing: .02em; }
+.order-link { display: block; width: auto; margin: 15px 0 11px; padding: 0; border: 0; background: none; text-align: left; text-decoration: none; font-family: Georgia, "Times New Roman", serif; font-size: clamp(25px, 2.4vw, 39px); cursor: pointer; transition: transform .28s var(--ease), color .25s ease, font-style .25s ease; }
+.order-link:hover { color: var(--red); font-style: italic; transform: translateX(5px); }
 .order-note { margin: 0; font-size: 11px; text-align: right; }
 .overlay-panel { position: fixed; inset: 0; z-index: 20; padding: clamp(22px, 5vw, 72px); display: grid; place-items: center; visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .45s ease, visibility 0s .45s; }
 body.about-open .about, body.preorder-open .preorder { visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0s; }
@@ -80,7 +79,6 @@ body.about-open .about, body.preorder-open .preorder { visibility: visible; opac
 .order-link--light { max-width: 480px; margin-top: 36px; }
 .preorder__secondary { margin-top: 32px; font-family: Arial, sans-serif !important; font-size: 12px !important; }
 @keyframes drift { to { transform: translate3d(8%, -6%, 0); } }
-@keyframes grain { to { transform: translate3d(-1.5%, 1%, 0) scale(1.03); } }
 @keyframes open-book { to { opacity: 1; transform: scale(1) rotateX(0); } }
 @keyframes leaf-forward {
   0% { transform: rotateY(0deg) skewY(0deg); filter: brightness(1); }
@@ -114,7 +112,6 @@ body.about-open .about, body.preorder-open .preorder { visibility: visible; opac
   .object-stage { width: min(67vw, 300px); flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
   body[data-book-state="open"] .object-stage { width: calc(100vw - 20px); flex: 1; }
   .book-cover { max-height: 56svh; object-fit: contain; }
-  .vellum__title { font-size: clamp(29px, 10vw, 45px); }
   .hero__order { align-self: stretch; width: 100%; margin: 0; }
   .hero__order .eyebrow, .order-note { display: none; }
   .order-link { margin: 0; font-size: 27px; padding: 8px 0; }
