@@ -23,7 +23,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--blue); outline-
 .masthead button { padding: 0; border: 0; background: none; text-transform: uppercase; cursor: pointer; }
 .masthead button:hover { color: var(--red); }
 .hero__intro { align-self: end; margin-bottom: clamp(48px, 9vh, 110px); max-width: 310px; transition: opacity .45s ease; }
-.hero__intro h1 { margin: 11px 0 18px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(62px, 7vw, 126px); line-height: .76; font-weight: 400; letter-spacing: -.075em; }
+.hero__intro h1 { margin: 11px 0 clamp(28px, 2.4vw, 42px); font-family: Georgia, "Times New Roman", serif; font-size: clamp(62px, 7vw, 126px); line-height: .82; font-weight: 400; letter-spacing: -.075em; }
 .hero__intro > p:last-child { max-width: 26ch; margin: 0; }
 .object-stage { grid-column: 2; width: min(68vw, 1060px, calc((100svh - 96px) * 1.448)); justify-self: center; position: relative; perspective: 1800px; }
 body[data-book-state="open"] .object-stage { z-index: 7; }
