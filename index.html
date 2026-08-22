@@ -9,7 +9,7 @@
     <link rel="preload" href="assets/odyssey-cover.png" as="image" />
     <link rel="preload" href="assets/cover-vellum-final.jpg" as="image" />
     <link rel="preload" href="assets/odyssey-spread-01.png" as="image" />
-    <link rel="stylesheet" href="styles.css?v=6" />
+    <link rel="stylesheet" href="styles.css?v=9" />
   </head>
   <body data-book-state="vellum">
     <div class="ambient" aria-hidden="true"></div>
@@ -38,25 +38,7 @@
           </div>
           <div class="open-book" id="open-book" aria-hidden="true">
             <div class="spread-window" id="spread-window">
-              <div class="static-page static-page--left page-half page-half--left">
-                <img id="static-left-image" src="assets/odyssey-spread-01.png" alt="" />
-              </div>
-              <div class="static-page static-page--right page-half page-half--right">
-                <img id="static-right-image" src="assets/odyssey-spread-01.png" alt="" />
-              </div>
-              <div class="turning-leaf" id="turning-leaf" aria-hidden="true">
-                <div class="leaf-face leaf-face--front page-half">
-                  <img id="leaf-front-image" src="assets/odyssey-spread-01.png" alt="" />
-                  <span class="leaf-shade"></span>
-                </div>
-                <div class="leaf-face leaf-face--back page-half">
-                  <img id="leaf-back-image" src="assets/odyssey-spread-02.png" alt="" />
-                  <span class="leaf-shade"></span>
-                </div>
-              </div>
-              <span class="page-light" aria-hidden="true"></span>
-              <button class="page-zone page-zone--previous" id="page-previous" type="button" aria-label="Предыдущий разворот"></button>
-              <button class="page-zone page-zone--next" id="page-next" type="button" aria-label="Следующий разворот"></button>
+              <div class="page-flip" id="page-flip" aria-label="Листаемый фрагмент книги"></div>
             </div>
             <p class="spread-status" id="spread-status" aria-live="polite">Разворот 1 из 4</p>
           </div>
@@ -139,6 +121,7 @@
       </div>
       <p id="note-copy"></p>
     </div>
-    <script src="script.js?v=6"></script>
+    <script src="assets/vendor/page-flip.browser.js"></script>
+    <script src="script.js?v=9"></script>
   </body>
 </html>
