@@ -8,15 +8,15 @@
   --ease: cubic-bezier(.22, .8, .18, 1);
 }
 * { box-sizing: border-box; }
-html { background: var(--paper); }
-body { margin: 0; min-width: 300px; color: var(--ink); background: var(--paper); font-family: Arial, Helvetica, sans-serif; line-height: 1.32; overflow-x: hidden; }
+html { width: 100%; height: 100%; overflow: hidden; background: var(--paper); }
+body { margin: 0; width: 100%; height: 100%; min-width: 300px; color: var(--ink); background: var(--paper); font-family: Arial, Helvetica, sans-serif; line-height: 1.32; overflow: hidden; }
 button, a { color: inherit; font: inherit; }
 button { -webkit-tap-highlight-color: transparent; }
 button:focus-visible, a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 .eyebrow { margin: 0; font-size: 11px; letter-spacing: .11em; text-transform: uppercase; }
 .ambient { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 20% 75%, rgba(255,255,255,.64), transparent 34%), radial-gradient(circle at 81% 17%, rgba(255,241,223,.62), transparent 33%), linear-gradient(125deg, #cfccce, #e2dfdc 46%, #c9c4c7); }
 .ambient::after { content: ""; position: absolute; inset: -25%; opacity: .35; background: repeating-linear-gradient(116deg, transparent 0 24px, rgba(255,255,255,.28) 25px, transparent 27px); animation: drift 22s linear infinite; }
-.hero { min-height: 100svh; padding: var(--page-pad); display: grid; grid-template-columns: minmax(210px, 1fr) minmax(330px, 1.25fr) minmax(210px, 1fr); align-items: center; gap: clamp(20px, 3vw, 60px); position: relative; }
+.hero { width: 100%; height: 100svh; min-height: 0; padding: var(--page-pad); overflow: hidden; display: grid; grid-template-columns: minmax(210px, 1fr) minmax(330px, 1.25fr) minmax(210px, 1fr); align-items: center; gap: clamp(20px, 3vw, 60px); position: relative; }
 .masthead { position: absolute; top: var(--page-pad); left: var(--page-pad); right: var(--page-pad); display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid var(--line); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; z-index: 5; }
 .masthead p { margin: 0; }
 .masthead nav { display: flex; gap: 22px; }
@@ -25,9 +25,9 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--blue); outline-
 .hero__intro { align-self: end; margin-bottom: clamp(48px, 9vh, 110px); max-width: 310px; transition: opacity .45s ease; }
 .hero__intro h1 { margin: 11px 0 18px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(62px, 7vw, 126px); line-height: .76; font-weight: 400; letter-spacing: -.075em; }
 .hero__intro > p:last-child { max-width: 26ch; margin: 0; }
-.object-stage { grid-column: 2; width: min(35vw, 430px); justify-self: center; position: relative; perspective: 1800px; transition: width .8s var(--ease); }
-body[data-book-state="open"] .object-stage { width: min(68vw, 1060px); z-index: 7; }
-.closed-book { width: 100%; transition: opacity .35s ease, transform .7s var(--ease); }
+.object-stage { grid-column: 2; width: min(68vw, 1060px, calc((100svh - 96px) * 1.448)); justify-self: center; position: relative; perspective: 1800px; }
+body[data-book-state="open"] .object-stage { z-index: 7; }
+.closed-book { width: min(46vw, 430px); margin-inline: auto; transition: opacity .35s ease, transform .7s var(--ease); }
 .cover-button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; position: relative; }
 .book-cover { display: block; width: 100%; height: auto; filter: drop-shadow(0 30px 25px rgba(27,22,24,.28)); }
 .vellum { position: absolute; top: 6.2%; left: 19.25%; width: 62.3%; height: 87.3%; overflow: hidden; background: #eee9e4; box-shadow: 7px 4px 13px rgba(20,18,18,.12); transform-origin: 14% 10%; transform: translate3d(0,0,10px); transition: transform 1s var(--ease), opacity .55s ease, filter .8s ease; }
@@ -87,21 +87,23 @@ body.about-open .about, body.preorder-open .preorder { visibility: visible; opac
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr minmax(270px, .9fr); grid-template-rows: 1fr auto; padding-top: 78px; }
   .hero__intro { grid-column: 1; grid-row: 1; align-self: start; margin-top: 7vh; margin-bottom: 0; }
-  .object-stage { grid-column: 2; grid-row: 1 / span 2; width: min(46vw, 420px); }
-  body[data-book-state="open"] .object-stage { grid-column: 1 / -1; width: min(92vw, 980px); z-index: 7; }
+  .object-stage { grid-column: 1 / -1; grid-row: 1 / span 2; width: min(92vw, 980px, calc((100svh - 110px) * 1.448)); }
+  .closed-book { width: min(46vw, 420px); }
+  body[data-book-state="open"] .object-stage { z-index: 7; }
   body[data-book-state="open"] .hero__intro, body[data-book-state="open"] .hero__order { opacity: .16; }
   .hero__order { grid-column: 1; grid-row: 2; justify-self: start; margin: 0 0 3vh; }
 }
 @media (max-width: 620px) {
   :root { --page-pad: 18px; }
-  .hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; padding-top: 70px; }
+  .hero { height: 100svh; min-height: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; padding-top: 70px; }
   .masthead nav { gap: 13px; }
   .masthead nav button:first-child { display: none; }
   .hero__intro { align-self: flex-start; margin: 0; }
   .hero__intro h1 { margin: 6px 0 8px; font-size: clamp(54px, 18vw, 76px); }
   .hero__intro > p:last-child { display: none; }
-  .object-stage { width: min(67vw, 300px); flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
-  body[data-book-state="open"] .object-stage { width: calc(100vw - 20px); flex: 1; }
+  .object-stage { width: min(calc(100vw - 20px), calc((100svh - 210px) * 1.448)); flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
+  .closed-book { width: min(67vw, 300px); }
+  body[data-book-state="open"] .object-stage { flex: 1; }
   .book-cover { max-height: 56svh; object-fit: contain; }
   .hero__order { align-self: stretch; width: 100%; margin: 0; }
   .hero__order .eyebrow, .order-note { display: none; }

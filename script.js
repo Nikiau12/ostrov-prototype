@@ -97,10 +97,7 @@ function openPublication() {
   if (body.dataset.bookState !== "cover") return;
   body.dataset.bookState = "open";
   openBook.setAttribute("aria-hidden", "false");
-  window.requestAnimationFrame(() => {
-    ensurePageFlip();
-    window.setTimeout(() => pageFlip?.update(), 850);
-  });
+  window.requestAnimationFrame(ensurePageFlip);
 }
 
 function closePublication() {
