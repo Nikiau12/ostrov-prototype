@@ -38,7 +38,8 @@ body[data-book-state="open"] .closed-book { opacity: 0; transform: scale(.84) ro
 body[data-book-state="open"] .open-book { display: block; animation: open-book .78s var(--ease) forwards; }
 .spread-window { position: relative; width: 100%; aspect-ratio: 1.448 / 1; overflow: visible; filter: drop-shadow(0 24px 22px rgba(24,20,19,.27)); }
 .page-flip { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
-.page-flip canvas { display: block; }
+.book-page { overflow: hidden; background: #fbf3e5; }
+.book-page img { display: block; width: 100%; height: 100%; object-fit: cover; user-select: none; pointer-events: none; -webkit-user-drag: none; }
 .spread-status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .book-action { margin: 14px auto 0; padding: 5px 0; border: 0; background: transparent; display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: color .25s ease, letter-spacing .25s ease; }
 .book-action:hover { color: var(--red); letter-spacing: .14em; }

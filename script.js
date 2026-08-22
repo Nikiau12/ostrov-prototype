@@ -46,6 +46,19 @@ function updateSpreadStatus(pageIndex = 0) {
 
 function ensurePageFlip() {
   if (pageFlip) return;
+  const pageElements = pageImages.map((src, index) => {
+    const page = document.createElement("div");
+    const image = document.createElement("img");
+
+    page.className = "book-page";
+    image.src = src;
+    image.alt = `Страница ${index + 1} фрагмента «Одиссеи»`;
+    image.draggable = false;
+    page.append(image);
+    pageFlipElement.append(page);
+    return page;
+  });
+
   pageFlip = new St.PageFlip(pageFlipElement, {
     width: 748,
     height: 1033,
@@ -66,7 +79,7 @@ function ensurePageFlip() {
     useMouseEvents: true,
   });
   pageFlip.on("flip", (event) => updateSpreadStatus(event.data));
-  pageFlip.loadFromImages(pageImages);
+  pageFlip.loadFromHTML(pageElements);
 }
 
 function removeVellum() {
@@ -84,7 +97,10 @@ function openPublication() {
   if (body.dataset.bookState !== "cover") return;
   body.dataset.bookState = "open";
   openBook.setAttribute("aria-hidden", "false");
-  window.requestAnimationFrame(ensurePageFlip);
+  window.requestAnimationFrame(() => {
+    ensurePageFlip();
+    window.setTimeout(() => pageFlip?.update(), 850);
+  });
 }
 
 function closePublication() {
