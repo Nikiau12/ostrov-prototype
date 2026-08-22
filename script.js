@@ -4,7 +4,6 @@ const pageImages = Array.from({ length: 8 }, (_, index) =>
 
 const body = document.body;
 const hero = document.querySelector(".hero");
-const objectStage = document.querySelector("#object-stage");
 const coverToggle = document.querySelector("#cover-toggle");
 const bookAction = document.querySelector("#book-action");
 const bookActionLabel = document.querySelector("#book-action-label");
@@ -19,6 +18,8 @@ const noteNumber = document.querySelector("#note-number");
 const noteCopy = document.querySelector("#note-copy");
 const noteClose = document.querySelector("#note-close");
 const noteTriggers = [...document.querySelectorAll(".footnote-trigger")];
+const isCompactBook = window.matchMedia("(max-width: 620px)").matches;
+const initialBookPage = isCompactBook ? 1 : 0;
 
 const notes = {
   language: {
@@ -41,7 +42,9 @@ pageImages.forEach((src) => {
 });
 
 function updateSpreadStatus(pageIndex = 0) {
-  spreadStatus.textContent = `Разворот ${Math.floor(pageIndex / 2) + 1} из 4`;
+  spreadStatus.textContent = isCompactBook
+    ? `Страница ${pageIndex + 1} из 8`
+    : `Разворот ${Math.floor(pageIndex / 2) + 1} из 4`;
 }
 
 function ensurePageFlip() {
@@ -69,13 +72,13 @@ function ensurePageFlip() {
     maxHeight: 1033,
     drawShadow: true,
     flippingTime: 860,
-    usePortrait: false,
-    startPage: 0,
+    usePortrait: true,
+    startPage: initialBookPage,
     autoSize: true,
     maxShadowOpacity: .42,
     showCover: false,
     mobileScrollSupport: false,
-    swipeDistance: 16,
+    swipeDistance: isCompactBook ? 8 : 16,
     useMouseEvents: true,
   });
   pageFlip.on("flip", (event) => updateSpreadStatus(event.data));
@@ -104,8 +107,8 @@ function closePublication() {
   if (body.dataset.bookState !== "open") return;
   body.dataset.bookState = "cover";
   openBook.setAttribute("aria-hidden", "true");
-  pageFlip?.turnToPage(0);
-  updateSpreadStatus(0);
+  pageFlip?.turnToPage(initialBookPage);
+  updateSpreadStatus(initialBookPage);
   coverToggle.setAttribute("aria-label", "Открыть книгу");
   bookActionLabel.textContent = "открыть книгу";
 }
@@ -115,7 +118,7 @@ bookAction.addEventListener("click", openPublication);
 
 hero.addEventListener("click", (event) => {
   if (body.dataset.bookState !== "open") return;
-  if (event.composedPath().includes(objectStage) || event.target.closest("button, a")) return;
+  if (event.composedPath().includes(openBook) || event.target.closest("button, a")) return;
   closePublication();
 });
 
@@ -207,4 +210,4 @@ document.querySelector("#external-order").addEventListener("click", (event) => {
   document.querySelector("#order-placeholder").textContent = "Здесь будет ссылка на страницу предзаказа.";
 });
 
-updateSpreadStatus();
+updateSpreadStatus(initialBookPage);

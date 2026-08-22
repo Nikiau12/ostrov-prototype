@@ -101,9 +101,10 @@ body.about-open .about, body.preorder-open .preorder { visibility: visible; opac
   .hero__intro { align-self: flex-start; margin: 0; }
   .hero__intro h1 { margin: 6px 0 8px; font-size: clamp(54px, 18vw, 76px); }
   .hero__intro > p:last-child { display: none; }
-  .object-stage { width: min(calc(100vw - 20px), calc((100svh - 210px) * 1.448)); flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
+  .object-stage { width: min(calc(100vw - 20px), calc((100svh - 190px) * .724)); flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
   .closed-book { width: min(67vw, 300px); }
   body[data-book-state="open"] .object-stage { flex: 1; }
+  .spread-window { aspect-ratio: 748 / 1033; }
   .book-cover { max-height: 56svh; object-fit: contain; }
   .hero__order { align-self: stretch; width: 100%; margin: 0; }
   .hero__order .eyebrow, .order-note { display: none; }
