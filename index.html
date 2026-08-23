@@ -9,12 +9,12 @@
     <link rel="preload" href="assets/odyssey-cover.png" as="image" />
     <link rel="preload" href="assets/cover-vellum-final.jpg" as="image" />
     <link rel="preload" href="assets/odyssey-spread-01.png" as="image" />
-    <link rel="stylesheet" href="styles.css?v=14" />
+    <link rel="stylesheet" href="styles.css?v=27" />
   </head>
   <body data-book-state="vellum">
     <div class="ambient" aria-hidden="true"></div>
     <main>
-      <section class="hero" aria-labelledby="page-title">
+      <section class="hero" aria-label="Остров — литературный объект № 1">
         <header class="masthead">
           <p>Литературный объект № 1</p>
           <nav aria-label="Разделы страницы">
@@ -22,10 +22,25 @@
             <button type="button" id="preorder-open">предзаказ</button>
           </nav>
         </header>
-        <div class="hero__intro">
-          <p class="eyebrow">Осень—зима 2026 · Венеция</p>
-          <h1 id="page-title">Остров</h1>
-          <p>Печатный литературный объект на русском языке, родом из Венеции.</p>
+        <button class="open-dismiss" id="open-dismiss" type="button" aria-label="Закрыть книгу"></button>
+        <div class="story-orbit" aria-label="Фрагменты об Острове">
+          <article class="story-fragment story-fragment--one" id="story-one" tabindex="0" aria-label="Проявить первый фрагмент об Острове">
+            <p>
+              «Остров» — печатное литературное издание на русском языке
+              <button class="footnote-trigger" type="button" data-note="language" aria-label="Открыть примечание 1">1</button>,
+              родом из Венеции.
+            </p>
+          </article>
+          <article class="story-fragment story-fragment--two" id="story-two" tabindex="0" aria-label="Проявить второй фрагмент об Острове">
+            <p>«Остров» возник в ситуации, когда язык, удалённый от мест своего обитания, стал тревожить: с одной стороны — тем, что всё ещё управлял способом мыслить и говорить, с другой — тем, что его использование обязывало перестроить своё тело, свой аппарат речи так, чтобы речь стала глуше, скрытнее, опрятнее.</p>
+          </article>
+          <article class="story-fragment story-fragment--three" id="story-three" tabindex="0" aria-label="Проявить третий фрагмент об Острове">
+            <p>Ей оставалось затаиться в воображении и из ситуаций, сюжетов, которые мы потеряли, никогда не знали, забыли или перепутали, переправиться к изнанке процессов, к изнанке смыслов.</p>
+          </article>
+          <article class="story-fragment story-fragment--four" id="story-four" tabindex="0" aria-label="Проявить четвёртый фрагмент об Острове">
+            <p>«Остров» каталогизирует методы работы с письмом и воображением — чтобы выстроить мост к другим пространствам и другим зонам сосуществования языков. Этими методами могут быть проза, поэзия, эссеистика, сооружение вымышленных библиотек, чтение мыслей растений и животных, спиритический сеанс, асемия, эпистолы в прошлое и то, что мы ещё даже не придумали.</p>
+          </article>
+          <button class="story-mobile-trigger" id="story-mobile-trigger" type="button">об «Острове»</button>
         </div>
         <div class="object-stage" id="object-stage">
           <div class="closed-book" id="closed-book">
@@ -45,15 +60,14 @@
           <button class="book-action" id="book-action" type="button">
             <span id="book-action-label">снять кальку</span>
           </button>
-        </div>
-        <div class="hero__order">
-          <p class="eyebrow">Первый тираж уже печатается</p>
-          <button class="order-button" id="preorder-open-secondary" type="button">
-            <span>Предзаказать</span>
-            <span class="order-button__line" aria-hidden="true"></span>
-            <span class="order-button__marker" aria-hidden="true">↗</span>
-          </button>
-          <p class="order-note">Доставка по Европе</p>
+          <div class="book-preorder">
+            <p>Первый тираж уже в печати · Доставка по Европе</p>
+            <button class="order-button" id="preorder-open-secondary" type="button">
+              <span>Предзаказать</span>
+              <span class="order-button__line" aria-hidden="true"></span>
+              <span class="order-button__marker" aria-hidden="true">↗</span>
+            </button>
+          </div>
         </div>
       </section>
     </main>
@@ -122,6 +136,6 @@
       <p id="note-copy"></p>
     </div>
     <script src="assets/vendor/page-flip.browser.js"></script>
-    <script src="script.js?v=14"></script>
+    <script src="script.js?v=27"></script>
   </body>
 </html>

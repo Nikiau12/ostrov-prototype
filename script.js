@@ -4,6 +4,7 @@ const pageImages = Array.from({ length: 8 }, (_, index) =>
 
 const body = document.body;
 const hero = document.querySelector(".hero");
+const openDismiss = document.querySelector("#open-dismiss");
 const coverToggle = document.querySelector("#cover-toggle");
 const bookAction = document.querySelector("#book-action");
 const bookActionLabel = document.querySelector("#book-action-label");
@@ -18,6 +19,8 @@ const noteNumber = document.querySelector("#note-number");
 const noteCopy = document.querySelector("#note-copy");
 const noteClose = document.querySelector("#note-close");
 const noteTriggers = [...document.querySelectorAll(".footnote-trigger")];
+const storyFragments = [...document.querySelectorAll(".story-fragment")];
+const mobileStoryTrigger = document.querySelector("#story-mobile-trigger");
 const isCompactBook = window.matchMedia("(max-width: 620px)").matches;
 const initialBookPage = isCompactBook ? 1 : 0;
 
@@ -35,6 +38,7 @@ const notes = {
 let pageFlip = null;
 let activePanelTrigger = null;
 let activeNoteTrigger = null;
+let activeStoryFragment = null;
 
 pageImages.forEach((src) => {
   const image = new Image();
@@ -98,6 +102,7 @@ function openPublication() {
     return;
   }
   if (body.dataset.bookState !== "cover") return;
+  clearStoryReveals();
   body.dataset.bookState = "open";
   openBook.setAttribute("aria-hidden", "false");
   window.requestAnimationFrame(ensurePageFlip);
@@ -115,11 +120,42 @@ function closePublication() {
 
 coverToggle.addEventListener("click", openPublication);
 bookAction.addEventListener("click", openPublication);
+openDismiss.addEventListener("click", closePublication);
+openDismiss.addEventListener("pointerdown", (event) => {
+  event.preventDefault();
+  closePublication();
+});
 
 hero.addEventListener("click", (event) => {
   if (body.dataset.bookState !== "open") return;
   if (event.composedPath().includes(openBook) || event.target.closest("button, a")) return;
   closePublication();
+});
+
+function clearStoryReveals() {
+  storyFragments.forEach((fragment) => fragment.classList.remove("is-revealed"));
+  activeStoryFragment?.blur();
+  activeStoryFragment = null;
+}
+
+function toggleStoryReveal(fragment) {
+  const shouldReveal = !fragment.classList.contains("is-revealed");
+  clearStoryReveals();
+  if (!shouldReveal) return;
+  activeStoryFragment = fragment;
+  fragment.classList.add("is-revealed");
+}
+
+storyFragments.forEach((fragment) => {
+  fragment.addEventListener("click", (event) => {
+    if (event.target.closest("button, a")) return;
+    toggleStoryReveal(fragment);
+  });
+  fragment.addEventListener("keydown", (event) => {
+    if (event.target !== fragment || !["Enter", " "].includes(event.key)) return;
+    event.preventDefault();
+    toggleStoryReveal(fragment);
+  });
 });
 
 function closePanels({ returnFocus = true } = {}) {
@@ -133,6 +169,7 @@ function closePanels({ returnFocus = true } = {}) {
 
 function openPanel(panel, trigger) {
   closePanels({ returnFocus: false });
+  clearStoryReveals();
   activePanelTrigger = trigger;
   const isAbout = panel === aboutPanel;
   body.classList.add(isAbout ? "about-open" : "preorder-open");
@@ -141,6 +178,7 @@ function openPanel(panel, trigger) {
 }
 
 document.querySelector("#about-open").addEventListener("click", (event) => openPanel(aboutPanel, event.currentTarget));
+mobileStoryTrigger.addEventListener("click", () => openPanel(aboutPanel, mobileStoryTrigger));
 [document.querySelector("#preorder-open"), document.querySelector("#preorder-open-secondary")].forEach((button) => {
   button.addEventListener("click", () => openPanel(preorderPanel, button));
 });
@@ -187,7 +225,8 @@ noteClose.addEventListener("click", () => closeNote({ returnFocus: true }));
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
-    if (!notePopover.hidden) closeNote({ returnFocus: true });
+    if (activeStoryFragment) clearStoryReveals();
+    else if (!notePopover.hidden) closeNote({ returnFocus: true });
     else if (body.classList.contains("about-open") || body.classList.contains("preorder-open")) closePanels();
     else closePublication();
     return;
@@ -199,6 +238,7 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("click", (event) => {
   if (!notePopover.hidden && !notePopover.contains(event.target) && !event.target.closest(".footnote-trigger")) closeNote();
+  if (activeStoryFragment && !event.target.closest(".story-fragment")) clearStoryReveals();
 });
 
 window.addEventListener("resize", () => {
