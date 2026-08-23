@@ -177,9 +177,8 @@ function openPanel(panel, trigger) {
   window.setTimeout(() => panel.querySelector("[data-close-panel]").focus(), 100);
 }
 
-document.querySelector("#about-open").addEventListener("click", (event) => openPanel(aboutPanel, event.currentTarget));
 mobileStoryTrigger.addEventListener("click", () => openPanel(aboutPanel, mobileStoryTrigger));
-[document.querySelector("#preorder-open"), document.querySelector("#preorder-open-secondary")].forEach((button) => {
+[document.querySelector("#preorder-open-secondary")].filter(Boolean).forEach((button) => {
   button.addEventListener("click", () => openPanel(preorderPanel, button));
 });
 panelCloseButtons.forEach((button) => button.addEventListener("click", () => closePanels()));

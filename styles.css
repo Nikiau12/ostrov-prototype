@@ -18,14 +18,9 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--blue); outline-
 .ambient { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 20% 75%, rgba(255,255,255,.64), transparent 34%), radial-gradient(circle at 81% 17%, rgba(255,241,223,.62), transparent 33%), linear-gradient(125deg, #cfccce, #e2dfdc 46%, #c9c4c7); }
 .ambient::after { content: ""; position: absolute; inset: -25%; opacity: .35; background: repeating-linear-gradient(116deg, transparent 0 24px, rgba(255,255,255,.28) 25px, transparent 27px); animation: drift 22s linear infinite; }
 .hero { width: 100%; height: 100svh; min-height: 0; padding: var(--page-pad); overflow: hidden; display: grid; grid-template-columns: minmax(210px, 1fr) minmax(330px, 1.25fr) minmax(210px, 1fr); align-items: center; gap: clamp(20px, 3vw, 60px); position: relative; }
-.masthead { position: absolute; top: var(--page-pad); left: var(--page-pad); right: var(--page-pad); display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid var(--line); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; z-index: 5; }
-.masthead p { margin: 0; }
-.masthead nav { display: flex; gap: 22px; }
-.masthead button { padding: 0; border: 0; background: none; text-transform: uppercase; cursor: pointer; }
-.masthead button:hover { color: var(--red); }
 .open-dismiss { position: absolute; inset: 0; z-index: 6; display: none; padding: 0; border: 0; background: rgba(0, 0, 0, .001); cursor: default; }
 body[data-book-state="open"] .open-dismiss { display: block; }
-.story-orbit { position: absolute; inset: 66px 0 0; z-index: 4; pointer-events: none; transition: opacity .35s ease; }
+.story-orbit { position: absolute; inset: 0; z-index: 4; pointer-events: none; transition: opacity .35s ease; }
 .story-fragment { position: absolute; width: min(350px, 29vw); padding: 14px; color: var(--ink); background: transparent; border: 0; opacity: .085; filter: blur(5px); transform: scale(.985); pointer-events: auto; cursor: default; transition: opacity .52s ease, filter .62s var(--ease), transform .62s var(--ease); }
 .story-fragment:hover, .story-fragment:focus, .story-fragment.is-revealed { z-index: 5; opacity: .96; filter: blur(0); transform: scale(1); outline: 0; }
 .story-fragment > p { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(15px, 1.22vw, 18.5px); line-height: 1.42; letter-spacing: -.008em; }
@@ -95,7 +90,7 @@ body.about-open .about, body.preorder-open .preorder { visibility: visible; opac
 @keyframes drift { to { transform: translate3d(8%, -6%, 0); } }
 @keyframes open-book { to { opacity: 1; transform: scale(1) rotateX(0); } }
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; padding-top: 78px; }
+  .hero { grid-template-columns: 1fr; padding-top: 24px; }
   .object-stage { grid-column: 1; width: min(92vw, 980px, calc((100svh - 110px) * 1.448)); }
   .closed-book { width: min(46vw, 420px); }
   body[data-book-state="open"] .object-stage { z-index: 7; }
@@ -108,10 +103,8 @@ body.about-open .about, body.preorder-open .preorder { visibility: visible; opac
 }
 @media (max-width: 620px) {
   :root { --page-pad: 18px; }
-  .hero { height: 100svh; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 12px; padding-top: 70px; }
-  .masthead nav { gap: 13px; }
-  .masthead nav button:first-child { display: none; }
-  .story-orbit { inset: 58px 0 0; }
+  .hero { height: 100svh; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 12px; padding-top: 18px; }
+  .story-orbit { inset: 0; }
   .story-fragment { display: none; }
   .story-mobile-trigger { position: absolute; right: auto; bottom: 14px; left: 50%; display: block; padding: 8px 4px; border: 0; background: transparent; opacity: .42; filter: blur(1.5px); font-family: Georgia, "Times New Roman", serif; font-size: 18px; font-style: italic; cursor: pointer; pointer-events: auto; transform: translateX(-50%); transition: opacity .3s ease, filter .35s ease, letter-spacing .35s var(--ease); }
   .story-mobile-trigger:hover, .story-mobile-trigger:focus-visible { opacity: 1; filter: blur(0); letter-spacing: .035em; outline: 0; }
