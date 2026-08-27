@@ -23,6 +23,10 @@ const isCompactBook = window.matchMedia("(max-width: 760px)").matches;
 const initialBookPage = 0;
 
 let pageFlip = null;
+let mobileReader = null;
+let mobilePageIndex = initialBookPage;
+let mobileTurning = false;
+let mobilePointerStart = null;
 let activePanelTrigger = null;
 let activeStoryFragment = null;
 
@@ -37,7 +41,90 @@ function updateSpreadStatus(pageIndex = 0) {
     : `Разворот ${Math.floor(pageIndex / 2) + 1} из ${pageImages.length / 2}`;
 }
 
+function resetMobileReader() {
+  if (!mobileReader) return;
+  mobilePageIndex = initialBookPage;
+  mobileTurning = false;
+  mobileReader.base.src = pageImages[mobilePageIndex];
+  mobileReader.base.alt = `Страница ${mobilePageIndex + 1} журнала «Остров»`;
+  mobileReader.turn.className = "mobile-page-turn";
+  updateSpreadStatus(mobilePageIndex);
+}
+
+function turnMobilePage(step) {
+  if (!mobileReader || mobileTurning) return;
+  const nextIndex = Math.max(0, Math.min(pageImages.length - 1, mobilePageIndex + step));
+  if (nextIndex === mobilePageIndex) return;
+
+  mobileTurning = true;
+  mobileReader.base.src = pageImages[nextIndex];
+  mobileReader.base.alt = `Страница ${nextIndex + 1} журнала «Остров»`;
+  mobileReader.turn.src = pageImages[mobilePageIndex];
+  mobileReader.turn.alt = "";
+  mobileReader.turn.className = "mobile-page-turn";
+  void mobileReader.turn.offsetWidth;
+  mobileReader.turn.classList.add(step > 0 ? "is-turning-next" : "is-turning-prev");
+  mobilePageIndex = nextIndex;
+  updateSpreadStatus(mobilePageIndex);
+
+  window.setTimeout(() => {
+    if (!mobileReader) return;
+    mobileReader.turn.className = "mobile-page-turn";
+    mobileTurning = false;
+  }, 560);
+}
+
+function ensureMobileReader() {
+  if (mobileReader) return;
+
+  const stack = document.createElement("div");
+  const base = document.createElement("img");
+  const turn = document.createElement("img");
+
+  pageFlipElement.classList.add("mobile-page-reader");
+  stack.className = "mobile-page-stack";
+  base.className = "mobile-page-base";
+  turn.className = "mobile-page-turn";
+  base.draggable = false;
+  turn.draggable = false;
+  stack.append(base, turn);
+  pageFlipElement.append(stack);
+  mobileReader = { stack, base, turn };
+  resetMobileReader();
+
+  pageFlipElement.addEventListener("pointerdown", (event) => {
+    if (body.dataset.bookState !== "open") return;
+    mobilePointerStart = { x: event.clientX, y: event.clientY, id: event.pointerId };
+    pageFlipElement.setPointerCapture?.(event.pointerId);
+  });
+
+  pageFlipElement.addEventListener("pointerup", (event) => {
+    if (!mobilePointerStart || mobilePointerStart.id !== event.pointerId) return;
+    const deltaX = event.clientX - mobilePointerStart.x;
+    const deltaY = event.clientY - mobilePointerStart.y;
+    const bounds = pageFlipElement.getBoundingClientRect();
+    mobilePointerStart = null;
+
+    if (Math.abs(deltaX) > 28 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      turnMobilePage(deltaX < 0 ? 1 : -1);
+      return;
+    }
+
+    if (Math.abs(deltaX) < 12 && Math.abs(deltaY) < 12) {
+      turnMobilePage(event.clientX > bounds.left + bounds.width / 2 ? 1 : -1);
+    }
+  });
+
+  pageFlipElement.addEventListener("pointercancel", () => {
+    mobilePointerStart = null;
+  });
+}
+
 function ensurePageFlip() {
+  if (isCompactBook) {
+    ensureMobileReader();
+    return;
+  }
   if (pageFlip) return;
 
   const pageElements = pageImages.map((src, index) => {
@@ -57,19 +144,19 @@ function ensurePageFlip() {
     width: 822,
     height: 1180,
     size: "stretch",
-    minWidth: isCompactBook ? 260 : 150,
+    minWidth: 150,
     maxWidth: 822,
-    minHeight: isCompactBook ? 373 : 215,
+    minHeight: 215,
     maxHeight: 1180,
     drawShadow: true,
     flippingTime: 900,
     usePortrait: true,
     startPage: initialBookPage,
-    autoSize: true,
+    autoSize: false,
     maxShadowOpacity: .42,
     showCover: false,
     mobileScrollSupport: false,
-    swipeDistance: isCompactBook ? 8 : 16,
+    swipeDistance: 16,
     useMouseEvents: true,
   });
 
@@ -100,19 +187,8 @@ storyFragments.forEach((fragment) => {
   });
 });
 
-function removeVellum() {
-  if (body.dataset.bookState !== "vellum") return;
-  body.dataset.bookState = "cover";
-  coverToggle.setAttribute("aria-label", "Открыть книгу");
-  bookActionLabel.textContent = "открыть книгу";
-}
-
 function openPublication() {
-  if (body.dataset.bookState === "vellum") {
-    removeVellum();
-    return;
-  }
-  if (body.dataset.bookState !== "cover") return;
+  if (body.dataset.bookState === "open") return;
 
   clearStoryReveals();
   body.dataset.bookState = "open";
@@ -122,12 +198,13 @@ function openPublication() {
 
 function closePublication() {
   if (body.dataset.bookState !== "open") return;
-  body.dataset.bookState = "cover";
+  body.dataset.bookState = "vellum";
   openBook.setAttribute("aria-hidden", "true");
   pageFlip?.turnToPage(initialBookPage);
+  resetMobileReader();
   updateSpreadStatus(initialBookPage);
-  coverToggle.setAttribute("aria-label", "Открыть книгу");
-  bookActionLabel.textContent = "открыть книгу";
+  coverToggle.setAttribute("aria-label", "Открыть журнал");
+  bookActionLabel.textContent = "листать журнал";
 }
 
 coverToggle.addEventListener("click", openPublication);
@@ -181,8 +258,8 @@ document.addEventListener("keydown", (event) => {
   }
 
   if (body.dataset.bookState !== "open" || body.classList.contains("about-open") || body.classList.contains("preorder-open")) return;
-  if (event.key === "ArrowRight") pageFlip?.flipNext("bottom");
-  if (event.key === "ArrowLeft") pageFlip?.flipPrev("bottom");
+  if (event.key === "ArrowRight") isCompactBook ? turnMobilePage(1) : pageFlip?.flipNext("bottom");
+  if (event.key === "ArrowLeft") isCompactBook ? turnMobilePage(-1) : pageFlip?.flipPrev("bottom");
 });
 
 document.addEventListener("click", (event) => {
