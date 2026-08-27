@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#050505" />
+    <meta name="theme-color" content="#d8d4d4" />
     <meta name="description" content="Литературный объект «Остров», № 1. Осень—зима 2026." />
     <title>Остров — литературный объект № 1</title>
-    <link rel="preload" href="assets/odyssey-cover.png" as="image" />
-    <link rel="preload" href="assets/cover-vellum-final.jpg" as="image" />
-    <link rel="preload" href="assets/odyssey-spread-01.png" as="image" />
-    <link rel="stylesheet" href="styles.css?v=32" />
+    <link rel="preload" href="assets/ostrov-cover-mockup.png" as="image" />
+    <link rel="preload" href="assets/cover-vellum-aug27.jpg" as="image" />
+    <link rel="preload" href="assets/ostrov-page-01.png" as="image" />
+    <link rel="preload" href="assets/ostrov-page-02.png" as="image" />
+    <link rel="stylesheet" href="styles.css?v=33" />
   </head>
   <body data-book-state="vellum">
     <div class="ambient" aria-hidden="true"></div>
@@ -49,9 +50,9 @@
 
           <div class="closed-book" id="closed-book">
             <button class="cover-button" id="cover-toggle" type="button" aria-label="Снять кальку с обложки">
-              <img class="book-cover" src="assets/odyssey-cover.png" alt="Обложка первого номера «Острова»" />
+              <img class="book-cover" src="assets/ostrov-cover-mockup.png" alt="Фотообложка первого номера «Острова»" />
               <span class="vellum" aria-hidden="true">
-                <img class="vellum__art" src="assets/cover-vellum-final.jpg" alt="" />
+                <img class="vellum__art" src="assets/cover-vellum-aug27.jpg" alt="" />
               </span>
             </button>
           </div>
@@ -60,7 +61,7 @@
             <div class="spread-window" id="spread-window">
               <div class="page-flip" id="page-flip" aria-label="Листаемый фрагмент книги"></div>
             </div>
-            <p class="spread-status" id="spread-status" aria-live="polite">Разворот 1 из 4</p>
+            <p class="spread-status" id="spread-status" aria-live="polite">Разворот 1 из 5</p>
           </div>
 
           <button class="book-action" id="book-action" type="button">
@@ -113,6 +114,6 @@
     </section>
 
     <script src="assets/vendor/page-flip.browser.js"></script>
-    <script src="script.js?v=30"></script>
+    <script src="script.js?v=31"></script>
   </body>
 </html>

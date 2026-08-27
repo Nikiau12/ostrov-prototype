@@ -1,5 +1,5 @@
-const pageImages = Array.from({ length: 8 }, (_, index) =>
-  `assets/odyssey-page-${String(index + 1).padStart(2, "0")}.png`
+const pageImages = Array.from({ length: 10 }, (_, index) =>
+  `assets/ostrov-page-${String(index + 1).padStart(2, "0")}.png`
 );
 
 const body = document.body;
@@ -20,7 +20,7 @@ const preorderButton = document.querySelector("#preorder-open-secondary");
 const externalOrder = document.querySelector("#external-order");
 const orderPlaceholder = document.querySelector("#order-placeholder");
 const isCompactBook = window.matchMedia("(max-width: 760px)").matches;
-const initialBookPage = isCompactBook ? 1 : 0;
+const initialBookPage = 0;
 
 let pageFlip = null;
 let activePanelTrigger = null;
@@ -33,8 +33,8 @@ pageImages.forEach((src) => {
 
 function updateSpreadStatus(pageIndex = 0) {
   spreadStatus.textContent = isCompactBook
-    ? `Страница ${pageIndex + 1} из 8`
-    : `Разворот ${Math.floor(pageIndex / 2) + 1} из 4`;
+    ? `Страница ${pageIndex + 1} из ${pageImages.length}`
+    : `Разворот ${Math.floor(pageIndex / 2) + 1} из ${pageImages.length / 2}`;
 }
 
 function ensurePageFlip() {
@@ -46,7 +46,7 @@ function ensurePageFlip() {
 
     page.className = "book-page";
     image.src = src;
-    image.alt = `Страница ${index + 1} фрагмента «Одиссеи»`;
+    image.alt = `Страница ${index + 1} журнала «Остров»`;
     image.draggable = false;
     page.append(image);
     pageFlipElement.append(page);
@@ -54,13 +54,13 @@ function ensurePageFlip() {
   });
 
   pageFlip = new St.PageFlip(pageFlipElement, {
-    width: 748,
-    height: 1033,
+    width: 822,
+    height: 1180,
     size: "stretch",
     minWidth: isCompactBook ? 260 : 150,
-    maxWidth: 748,
-    minHeight: 207,
-    maxHeight: 1033,
+    maxWidth: 822,
+    minHeight: isCompactBook ? 373 : 215,
+    maxHeight: 1180,
     drawShadow: true,
     flippingTime: 900,
     usePortrait: true,
