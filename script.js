@@ -76,7 +76,7 @@ function turnMobileSpread(step) {
     if (!mobileReader) return;
     mobileReader.turn.className = "mobile-page-turn";
     mobileTurning = false;
-  }, 560);
+  }, 700);
 }
 
 function ensureMobileReader() {
@@ -159,7 +159,7 @@ function ensurePageFlip() {
     minHeight: 215,
     maxHeight: 1180,
     drawShadow: true,
-    flippingTime: 900,
+    flippingTime: 1050,
     usePortrait: true,
     startPage: initialBookPage,
     autoSize: false,
