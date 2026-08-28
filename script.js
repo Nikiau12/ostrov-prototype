@@ -824,45 +824,13 @@ function openPublication() {
 
   /*
     ===============================================
-    MOBILE / TABLET
-
-    Первый тап:
-    калька -> чистая обложка.
-
-    Обложка физически остаётся на том же месте.
-    Меняется только opacity верхнего слоя.
-    ===============================================
-  */
-
-  if (
-    isCompactBook &&
-    body.dataset.bookState ===
-      "vellum"
-  ) {
-
-    body.dataset.bookState =
-      "cover";
-
-
-    coverToggle.setAttribute(
-      "aria-label",
-      "Открыть журнал"
-    );
-
-
-    return;
-  }
-
-
-  /*
-    ===============================================
     DESKTOP
 
     Клик сразу открывает журнал.
 
     MOBILE/TABLET
 
-    Второй тап открывает журнал.
+    Первый тап открывает журнал.
     ===============================================
   */
 
@@ -921,11 +889,10 @@ function closePublication() {
   }
 
 
-  /*
-    После закрытия возвращаем кальку.
-  */
   body.dataset.bookState =
-    "vellum";
+    isCompactBook
+      ? "cover"
+      : "vellum";
 
 
   openBook.setAttribute(
@@ -955,9 +922,7 @@ function closePublication() {
 
   coverToggle.setAttribute(
     "aria-label",
-    isCompactBook
-      ? "Убрать кальку"
-      : "Открыть журнал"
+    "Открыть журнал"
   );
 
 }
@@ -1346,7 +1311,9 @@ externalOrder.addEventListener(
 ====================================================== */
 
 body.dataset.bookState =
-  "vellum";
+  isCompactBook
+    ? "cover"
+    : "vellum";
 
 
 updateSpreadStatus(
@@ -1356,7 +1323,5 @@ updateSpreadStatus(
 
 coverToggle.setAttribute(
   "aria-label",
-  isCompactBook
-    ? "Убрать кальку"
-    : "Открыть журнал"
+  "Открыть журнал"
 );

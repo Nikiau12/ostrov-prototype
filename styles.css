@@ -1658,14 +1658,36 @@ body.preorder-open .preorder {
       min(38vw, 280px);
 
     aspect-ratio:
-      822 / 1180;
+      2362 / 3425;
 
     margin-inline: auto;
   }
 
 
   .closed-book::after {
-    display: none;
+    display: block;
+
+    top: 3px;
+    right: -4px;
+    bottom: 3px;
+
+    width: 5px;
+
+    background:
+      linear-gradient(
+        90deg,
+        #f5f2ea 0%,
+        #dedad0 72%,
+        rgba(255, 255, 255, .38) 100%
+      );
+
+    border-radius: 0 2px 2px 0;
+
+    filter: none;
+
+    box-shadow:
+      4px 1px 6px rgba(255, 255, 255, .1),
+      9px 11px 16px rgba(0, 0, 0, .58);
   }
 
 
@@ -1740,27 +1762,7 @@ body.preorder-open .preorder {
     Калька лежит поверх той же обложки.
   */
   .compact-cover-vellum {
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 2;
-
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    pointer-events: none;
-
-    opacity: 1;
-
-    transform: none !important;
-
-    transition:
-      opacity .32s ease;
+    display: none !important;
   }
 
 
@@ -1769,7 +1771,7 @@ body.preorder-open .preorder {
   */
   body[data-book-state="vellum"]
   .compact-cover-vellum {
-    opacity: 1;
+    opacity: 0;
   }
 
 
@@ -1859,22 +1861,25 @@ body.preorder-open .preorder {
 
 
   .story-mobile-trigger {
-    position: absolute;
-
-    left: 50%;
-    bottom: 18px;
+    position: relative;
 
     display: block;
 
-    padding: 8px 4px;
+    min-height: 44px;
+
+    margin: 4px auto 0;
+
+    padding: 10px 8px;
 
     border: 0;
 
     background: transparent;
 
-    opacity: .68;
+    color: rgba(248, 246, 241, .94);
 
-    filter: blur(.7px);
+    opacity: .92;
+
+    filter: blur(.12px);
 
     font-family:
       var(--font-text);
@@ -1888,8 +1893,30 @@ body.preorder-open .preorder {
 
     pointer-events: auto;
 
-    transform:
-      translateX(-50%);
+    text-shadow:
+      0 0 8px rgba(255, 255, 255, .16);
+
+    transform: none;
+
+    transition:
+      opacity .2s ease,
+      filter .2s ease;
+  }
+
+
+  .story-mobile-trigger:hover,
+  .story-mobile-trigger:focus-visible {
+    opacity: 1;
+
+    filter: none;
+  }
+
+
+  body[data-book-state="open"]
+  .story-mobile-trigger {
+    opacity: 0;
+
+    pointer-events: none;
   }
 
 
@@ -1934,7 +1961,7 @@ body.preorder-open .preorder {
 
 
   .story-mobile-trigger {
-    bottom: 14px;
+    margin-top: 2px;
 
     font-size: 18px;
   }
@@ -1969,7 +1996,7 @@ body.preorder-open .preorder {
     max-width: none;
 
     aspect-ratio:
-      822 / 1180;
+      2362 / 3425;
   }
 
 
