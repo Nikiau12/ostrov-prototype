@@ -1762,7 +1762,24 @@ body.preorder-open .preorder {
     Калька лежит поверх той же обложки.
   */
   .compact-cover-vellum {
-    display: none !important;
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    pointer-events: none;
+
+    opacity: 1;
+
+    transform: none !important;
   }
 
 
@@ -1771,14 +1788,11 @@ body.preorder-open .preorder {
   */
   body[data-book-state="vellum"]
   .compact-cover-vellum {
-    opacity: 0;
+    opacity: 1;
   }
 
 
-  /*
-    После первого тапа исчезает
-    ТОЛЬКО калька.
-  */
+  /* Состояние без кальки оставлено для совместимости. */
   body[data-book-state="cover"]
   .compact-cover-vellum {
     opacity: 0;
@@ -1805,10 +1819,7 @@ body.preorder-open .preorder {
   }
 
 
-  /*
-    После второго тапа закрытая книга
-    скрывается и появляется разворот.
-  */
+  /* Один тап скрывает обложку и открывает разворот. */
   body[data-book-state="open"]
   .closed-book {
     position: absolute;
@@ -1861,13 +1872,16 @@ body.preorder-open .preorder {
 
 
   .story-mobile-trigger {
-    position: relative;
+    position: absolute;
+
+    left: 50%;
+    bottom: 18px;
 
     display: block;
 
     min-height: 44px;
 
-    margin: 4px auto 0;
+    margin: 0;
 
     padding: 10px 8px;
 
@@ -1896,7 +1910,8 @@ body.preorder-open .preorder {
     text-shadow:
       0 0 8px rgba(255, 255, 255, .16);
 
-    transform: none;
+    transform:
+      translateX(-50%);
 
     transition:
       opacity .2s ease,
@@ -1961,7 +1976,7 @@ body.preorder-open .preorder {
 
 
   .story-mobile-trigger {
-    margin-top: 2px;
+    bottom: 14px;
 
     font-size: 18px;
   }

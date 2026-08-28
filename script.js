@@ -890,9 +890,7 @@ function closePublication() {
 
 
   body.dataset.bookState =
-    isCompactBook
-      ? "cover"
-      : "vellum";
+    "vellum";
 
 
   openBook.setAttribute(
@@ -1311,9 +1309,7 @@ externalOrder.addEventListener(
 ====================================================== */
 
 body.dataset.bookState =
-  isCompactBook
-    ? "cover"
-    : "vellum";
+  "vellum";
 
 
 updateSpreadStatus(
