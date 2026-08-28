@@ -68,6 +68,7 @@ button, a, input, textarea, select { color: inherit; font: inherit; }
 button { -webkit-tap-highlight-color: transparent; }
 button:focus-visible, a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.nowrap { white-space: nowrap; }
 .eyebrow { margin: 0; font-size: 11px; letter-spacing: .11em; text-transform: uppercase; }
 .ambient { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 16% 72%, rgba(255,155,182,.11), transparent 28%), radial-gradient(circle at 82% 17%, rgba(255,105,145,.075), transparent 23%), linear-gradient(128deg, #030403, #090b08 48%, #040504); }
 .ambient::after { content: ""; position: absolute; inset: -25%; opacity: .12; background: repeating-linear-gradient(116deg, transparent 0 30px, rgba(255,155,182,.13) 31px, transparent 33px); animation: drift 26s linear infinite; }
@@ -79,8 +80,6 @@ body[data-book-state="open"] .open-dismiss { display: block; }
 .story-fragment { position: absolute; width: min(350px, 29vw); padding: 14px; color: var(--ink); background: transparent; border: 0; opacity: .32; transform: scale(.985); pointer-events: auto; cursor: default; transition: opacity .52s ease, transform .62s var(--ease); }
 .story-fragment:hover, .story-fragment:focus, .story-fragment.is-revealed { z-index: 5; opacity: .96; transform: scale(1); outline: 0; }
 .story-fragment h2 { margin: 0 0 8px; color: var(--neon); font-family: var(--font-sans); font-size: 10px; font-weight: 400; letter-spacing: .14em; text-transform: uppercase; text-shadow: 0 0 8px rgba(255,155,182,.58); }
-.story-fragment h2::after { content: " · навести"; opacity: .62; font-size: .82em; letter-spacing: .08em; }
-.story-fragment:hover h2::after, .story-fragment:focus h2::after, .story-fragment.is-revealed h2::after { opacity: 0; }
 .story-fragment > p { margin: 0; filter: blur(4.5px); font-family: var(--font-text); font-size: clamp(15px, 1.22vw, 18.5px); line-height: 1.42; letter-spacing: -.008em; transition: filter .62s var(--ease); }
 .story-fragment:hover > p, .story-fragment:focus > p, .story-fragment.is-revealed > p { filter: blur(0); }
 .story-fragment > p + p { margin-top: .8em; }
