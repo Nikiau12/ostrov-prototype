@@ -55,9 +55,10 @@ function renderMobileSpread(surface, spreadIndex) {
   const images = surface.querySelectorAll("img");
   const isCover = spreadIndex === 0;
   surface.classList.toggle("is-cover", isCover);
-  if (surface.classList.contains("mobile-page-base")) {
-    spreadWindow.classList.toggle("is-mobile-cover", isCover);
-  }
+ if (surface.classList.contains("mobile-page-base")) {
+  spreadWindow.classList.toggle("is-mobile-cover", isCover);
+  openBook.classList.toggle("is-mobile-cover", isCover);
+}
 
   if (isCover) {
     images[0].src = mobileCoverImage;
