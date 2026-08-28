@@ -1,5 +1,5 @@
-const pageImages = Array.from({ length: 10 }, (_, index) =>
-  `assets/ostrov-page-${String(index + 1).padStart(2, "0")}.png`
+const pageImages = Array.from({ length: 12 }, (_, index) =>
+  `assets/ostrov-page-${String(index + 1).padStart(2, "0")}.png?v=2`
 );
 
 const body = document.body;
@@ -160,7 +160,7 @@ function ensurePageFlip() {
     maxHeight: 1180,
     drawShadow: true,
     flippingTime: 1050,
-    usePortrait: true,
+    usePortrait: false,
     startPage: initialBookPage,
     autoSize: false,
     maxShadowOpacity: .42,
