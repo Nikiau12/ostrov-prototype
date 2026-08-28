@@ -217,11 +217,15 @@ body.about-open .about, body.preorder-open .preorder { visibility: visible; opac
   .book-preorder > p { font-size: 9px; }
   .book-preorder > .book-preorder__contact { margin-top: 3px; font-size: 9px; }
 }
+@media (hover: none), (pointer: coarse) {
+  .vellum { display: none; }
+}
 @media (max-width: 1024px) {
   .hero { grid-template-columns: 1fr; padding-top: 24px; }
   .object-stage { grid-column: 1; width: min(92vw, 980px, calc((100svh - 110px) * 1.393)); }
   .closed-book { width: min(46vw, 420px); }
   .open-book { width: min(76vw, 560px); }
+  .vellum { display: none; }
   body[data-book-state="open"] .object-stage { z-index: 7; }
   .story-sequence, .story-fragment { display: none; }
   .story-mobile-trigger { position: absolute; right: auto; bottom: 18px; left: 50%; display: block; padding: 8px 4px; border: 0; background: transparent; opacity: .68; filter: blur(.7px); font-family: var(--font-text); font-size: clamp(18px, 2.2vw, 22px); font-style: italic; text-shadow: 0 0 10px rgba(255,155,182,.2); cursor: pointer; pointer-events: auto; transform: translateX(-50%); transition: opacity .3s ease, filter .35s ease, letter-spacing .35s var(--ease); }
