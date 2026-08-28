@@ -72,7 +72,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--blue); outline-
 .ambient { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 16% 72%, rgba(255,155,182,.11), transparent 28%), radial-gradient(circle at 82% 17%, rgba(255,105,145,.075), transparent 23%), linear-gradient(128deg, #030403, #090b08 48%, #040504); }
 .ambient::after { content: ""; position: absolute; inset: -25%; opacity: .12; background: repeating-linear-gradient(116deg, transparent 0 30px, rgba(255,155,182,.13) 31px, transparent 33px); animation: drift 26s linear infinite; }
 .hero { width: 100%; height: 100svh; min-height: 0; padding: var(--page-pad); overflow: hidden; display: grid; grid-template-columns: minmax(210px, 1fr) minmax(330px, 1.25fr) minmax(210px, 1fr); align-items: center; gap: clamp(20px, 3vw, 60px); position: relative; }
-.open-dismiss { position: absolute; inset: 0; z-index: 6; display: none; padding: 0; border: 0; background: rgba(0, 0, 0, .001); cursor: default; }
+.open-dismiss { position: absolute; inset: 0; z-index: 6; display: none; padding: 0; border: 0; outline: 0; background: rgba(0, 0, 0, .001); appearance: none; -webkit-appearance: none; caret-color: transparent; cursor: default; }
+.open-dismiss:focus, .open-dismiss:focus-visible { outline: 0 !important; box-shadow: none !important; }
 body[data-book-state="open"] .open-dismiss { display: block; }
 .story-orbit { position: absolute; inset: 0; z-index: 4; pointer-events: none; transition: opacity .35s ease; }
 .story-fragment { position: absolute; width: min(350px, 29vw); padding: 14px; color: var(--ink); background: transparent; border: 0; opacity: .32; transform: scale(.985); pointer-events: auto; cursor: default; transition: opacity .52s ease, transform .62s var(--ease); }
@@ -94,9 +95,11 @@ body[data-book-state="open"] .object-stage { z-index: 7; }
 .issue-line__initial { display: inline-block; margin-inline: .01em -.03em; font-size: 1.32em; font-style: italic; line-height: .72; transform: rotate(-8deg) translateY(.04em); transform-origin: center; }
 .closed-book { position: relative; isolation: isolate; width: min(46vw, 430px); margin-inline: auto; transition: opacity .35s ease, transform .7s var(--ease); }
 .closed-book::after { content: ""; position: absolute; z-index: 0; top: 7%; right: 15.25%; bottom: 7%; width: 14px; background: linear-gradient(90deg, rgba(255,255,255,.5) 0%, rgba(232,232,232,.24) 50%, transparent 100%); border-radius: 0 36% 36% 0; filter: blur(3.5px); transform: none; }
-.cover-button { display: block; isolation: isolate; z-index: 1; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; position: relative; }
+.cover-button { display: block; isolation: isolate; z-index: 1; width: 100%; padding: 0; border: 0; outline: 0; background: none; appearance: none; -webkit-appearance: none; caret-color: transparent; cursor: pointer; position: relative; }
 .cover-button::before, .cover-button::after { content: none; }
-.cover-button:focus-visible { outline: 1px solid var(--seaweed); outline-offset: 5px; }
+.cover-button::-moz-focus-inner { padding: 0; border: 0; }
+.cover-button:focus, .cover-button:focus-visible, .cover-button:-moz-focusring { outline: 0 !important; box-shadow: none; }
+.cover-button:focus-visible .book-cover { filter: drop-shadow(0 0 9px rgba(255,155,182,.34)); }
 .book-cover { position: relative; z-index: 1; display: block; width: 100%; height: auto; filter: none; }
 .vellum { position: absolute; z-index: 2; top: 6.2%; left: 19.25%; width: 62.3%; height: 87.3%; overflow: hidden; background: #eee9e4; box-shadow: 7px 4px 13px rgba(20,18,18,.12); transform: translate3d(0,0,10px); transition: opacity .38s ease; }
 .vellum__art { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -109,6 +112,7 @@ body[data-book-state="open"] .open-book { display: block; animation: unfold-spre
 .spread-window { position: relative; width: 100%; aspect-ratio: 1644 / 1180; overflow: hidden; box-shadow: 1px 2px 2px rgba(0,0,0,.88), 8px 12px 15px -5px rgba(0,0,0,.7), 20px 29px 42px -14px rgba(0,0,0,.76), 0 0 25px rgba(255,155,182,.055); }
 .spread-window::after { content: ""; position: absolute; z-index: 5; inset: 0; pointer-events: none; background: linear-gradient(90deg, transparent 48.7%, rgba(0,0,0,.08) 49.7%, rgba(255,255,255,.24) 50%, rgba(0,0,0,.12) 50.3%, transparent 51.3%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); transition: opacity .28s ease; }
 .spread-window.is-mobile-cover::after { opacity: 0; }
+.page-flip, .page-flip canvas, .page-flip .stf__parent, .page-flip .stf__wrapper { outline: 0 !important; }
 .page-flip { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
 .mobile-page-reader { overflow: hidden; perspective: 1400px; }
 .mobile-page-stack { position: absolute; inset: 0; overflow: hidden; background: var(--paper); }
@@ -201,6 +205,17 @@ body.about-open .about, body.preorder-open .preorder { visibility: visible; opac
   .preorder__content > p:not(.eyebrow) { font-size: clamp(25px, 1.35vw, 36px); }
   .about-grid, .signoff { max-width: 780px; }
   .about-grid p, .signoff { font-size: clamp(24px, 1.18vw, 32px); }
+}
+@media (min-width: 1025px) and (max-height: 700px) {
+  :root { --page-pad: clamp(10px, 2vh, 18px); }
+  .hero { gap: clamp(18px, 2.4vw, 36px); }
+  .object-stage { width: min(58vw, 760px, calc((100svh - 52px) * 1.393)); }
+  .issue-line { margin-bottom: 7px; font-size: clamp(12px, 1vw, 15px); line-height: 1.12; }
+  .closed-book { width: min(46vw, 430px, calc((100svh - 185px) * .97)); }
+  .book-preorder { margin-top: 1px; }
+  .order-button { height: 54px; }
+  .book-preorder > p { font-size: 9px; }
+  .book-preorder > .book-preorder__contact { margin-top: 3px; font-size: 9px; }
 }
 @media (max-width: 1024px) {
   .hero { grid-template-columns: 1fr; padding-top: 24px; }
