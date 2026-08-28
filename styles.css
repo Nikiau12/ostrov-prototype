@@ -96,6 +96,7 @@ body[data-book-state="open"] .object-stage { z-index: 7; }
 .closed-book::after { content: ""; position: absolute; z-index: 0; top: 7%; right: 15.25%; bottom: 7%; width: 14px; background: linear-gradient(90deg, rgba(255,255,255,.5) 0%, rgba(232,232,232,.24) 50%, transparent 100%); border-radius: 0 36% 36% 0; filter: blur(3.5px); transform: none; }
 .cover-button { display: block; isolation: isolate; z-index: 1; width: 100%; padding: 0; border: 0; outline: 0; background: none; appearance: none; -webkit-appearance: none; caret-color: transparent; cursor: pointer; position: relative; }
 .cover-button::before, .cover-button::after { content: none; }
+.cover-button picture { display: block; }
 .cover-button::-moz-focus-inner { padding: 0; border: 0; }
 .cover-button:focus, .cover-button:focus-visible, .cover-button:-moz-focusring { outline: 0 !important; box-shadow: none; }
 .cover-button:focus-visible .book-cover { filter: drop-shadow(0 0 9px rgba(255,155,182,.34)); }
@@ -219,6 +220,7 @@ body.about-open .about, body.preorder-open .preorder { visibility: visible; opac
 }
 @media (hover: none), (pointer: coarse) {
   .vellum { display: none; }
+  .closed-book::after { display: none; }
 }
 @media (max-width: 1024px) {
   .hero { grid-template-columns: 1fr; padding-top: 24px; }
@@ -226,6 +228,7 @@ body.about-open .about, body.preorder-open .preorder { visibility: visible; opac
   .closed-book { width: min(46vw, 420px); }
   .open-book { width: min(76vw, 560px); }
   .vellum { display: none; }
+  .closed-book::after { display: none; }
   body[data-book-state="open"] .object-stage { z-index: 7; }
   .story-sequence, .story-fragment { display: none; }
   .story-mobile-trigger { position: absolute; right: auto; bottom: 18px; left: 50%; display: block; padding: 8px 4px; border: 0; background: transparent; opacity: .68; filter: blur(.7px); font-family: var(--font-text); font-size: clamp(18px, 2.2vw, 22px); font-style: italic; text-shadow: 0 0 10px rgba(255,155,182,.2); cursor: pointer; pointer-events: auto; transform: translateX(-50%); transition: opacity .3s ease, filter .35s ease, letter-spacing .35s var(--ease); }
@@ -242,7 +245,7 @@ body.about-open .about, body.preorder-open .preorder { visibility: visible; opac
   .open-book { width: 100%; margin-block: 0; }
   body[data-book-state="open"] .object-stage { flex: 1; }
   .spread-window { aspect-ratio: 1644 / 1180; }
-  .book-cover { max-height: 56svh; object-fit: contain; }
+  .book-cover { width: auto; max-width: 100%; height: auto; max-height: 56svh; margin-inline: auto; object-fit: contain; }
   .book-preorder { width: 100%; margin-top: 5px; }
   .book-preorder > p { max-width: 260px; }
   .order-button { width: 220px; max-width: 100%; }

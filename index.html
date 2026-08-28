@@ -7,13 +7,14 @@
     <meta name="description" content="Литературный объект «Остров», № 1. Осень—зима 2026." />
     <title>Остров — литературный объект № 1</title>
     <link rel="preload" href="assets/ostrov-cover-mockup.png" as="image" />
+    <link rel="preload" href="assets/ostrov-cover-69.jpg" as="image" />
     <link rel="preload" href="assets/cover-vellum-aug27-79-78.jpg" as="image" />
     <link rel="preload" href="assets/knife-cursor.png" as="image" />
     <link rel="preload" href="assets/ostrov-page-01.png?v=3" as="image" />
     <link rel="preload" href="assets/ostrov-page-02.png?v=3" as="image" />
     <link rel="preload" href="assets/fonts/AdobeTextPro-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/cofosans-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=64" />
+    <link rel="stylesheet" href="styles.css?v=65" />
   </head>
   <body data-book-state="vellum">
     <div class="ambient" aria-hidden="true"></div>
@@ -55,7 +56,11 @@
 
           <div class="closed-book" id="closed-book">
             <button class="cover-button" id="cover-toggle" type="button" aria-label="Открыть журнал">
-              <img class="book-cover" src="assets/ostrov-cover-mockup.png" alt="Фотообложка первого номера «Острова»" />
+              <picture>
+                <source media="(hover: none), (pointer: coarse)" srcset="assets/ostrov-cover-69.jpg" />
+                <source media="(max-width: 1024px)" srcset="assets/ostrov-cover-69.jpg" />
+                <img class="book-cover" src="assets/ostrov-cover-mockup.png" alt="Фотообложка первого номера «Острова»" />
+              </picture>
               <span class="vellum" aria-hidden="true">
                 <img class="vellum__art" src="assets/cover-vellum-aug27-79-78.jpg" alt="" />
               </span>
@@ -111,6 +116,6 @@
     </section>
 
     <script src="assets/vendor/page-flip.browser.js"></script>
-    <script src="script.js?v=39"></script>
+    <script src="script.js?v=40"></script>
   </body>
 </html>

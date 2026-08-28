@@ -5,7 +5,7 @@ const pageImages = [
 ].map((pageNumber) =>
   `assets/ostrov-page-${String(pageNumber).padStart(2, "0")}.png?v=3`
 );
-const mobileCoverImage = "assets/ostrov-cover-mockup.png";
+const mobileCoverImage = "assets/ostrov-cover-69.jpg";
 
 const body = document.body;
 const hero = document.querySelector(".hero");
