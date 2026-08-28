@@ -77,7 +77,7 @@ function renderMobileSpread(surface, spreadIndex) {
 
 function resetMobileReader() {
   if (!mobileReader) return;
-  mobileSpreadIndex = 0;
+  mobileSpreadIndex = 1;
   mobileTurning = false;
   renderMobileSpread(mobileReader.base, mobileSpreadIndex);
   mobileReader.turn.className = "mobile-page-turn";
