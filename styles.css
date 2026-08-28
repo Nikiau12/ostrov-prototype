@@ -93,7 +93,7 @@ body[data-book-state="open"] .object-stage { z-index: 7; }
 .issue-line { width: min(46ch, 100%); margin: 0 auto 16px; color: var(--neon); font-family: var(--font-text); font-size: clamp(14px, 1.1vw, 17px); letter-spacing: .008em; line-height: 1.22; text-align: center; text-wrap: balance; text-shadow: 0 0 4px rgba(255,155,182,.95), 0 0 12px rgba(255,155,182,.62), 0 0 28px rgba(255,155,182,.28); animation: issue-flicker 5.8s ease-in-out infinite; }
 .issue-line__initial { display: inline-block; margin-inline: .01em -.03em; font-size: 1.32em; font-style: italic; line-height: .72; transform: rotate(-8deg) translateY(.04em); transform-origin: center; }
 .closed-book { position: relative; isolation: isolate; width: min(46vw, 430px); margin-inline: auto; transition: opacity .35s ease, transform .7s var(--ease); }
-.closed-book::after { content: ""; position: absolute; z-index: 0; top: 7%; right: 15%; bottom: 7%; width: 14px; background: linear-gradient(90deg, rgba(255,255,255,.4) 0%, rgba(232,232,232,.18) 50%, transparent 100%); border-radius: 0 36% 36% 0; filter: blur(3.5px); transform: translateX(4px); }
+.closed-book::after { content: ""; position: absolute; z-index: 0; top: 7%; right: 15.25%; bottom: 7%; width: 14px; background: linear-gradient(90deg, rgba(255,255,255,.4) 0%, rgba(232,232,232,.18) 50%, transparent 100%); border-radius: 0 36% 36% 0; filter: blur(3.5px); transform: none; }
 .cover-button { display: block; isolation: isolate; z-index: 1; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; position: relative; }
 .cover-button::before, .cover-button::after { content: none; }
 .cover-button:focus-visible { outline: 1px solid var(--seaweed); outline-offset: 5px; }

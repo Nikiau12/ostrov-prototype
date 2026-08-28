@@ -1,5 +1,5 @@
-const pageImages = Array.from({ length: 12 }, (_, index) =>
-  `assets/ostrov-page-${String(index + 1).padStart(2, "0")}.png?v=2`
+const pageImages = Array.from({ length: 14 }, (_, index) =>
+  `assets/ostrov-page-${String(index + 1).padStart(2, "0")}.png?v=3`
 );
 
 const body = document.body;
