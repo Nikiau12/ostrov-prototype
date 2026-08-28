@@ -5,6 +5,7 @@ const pageImages = [
 ].map((pageNumber) =>
   `assets/ostrov-page-${String(pageNumber).padStart(2, "0")}.png?v=3`
 );
+const mobileCoverImage = "assets/ostrov-cover-mockup.png";
 
 const body = document.body;
 const hero = document.querySelector(".hero");
@@ -12,6 +13,7 @@ const openDismiss = document.querySelector("#open-dismiss");
 const coverToggle = document.querySelector("#cover-toggle");
 const openBook = document.querySelector("#open-book");
 const pageFlipElement = document.querySelector("#page-flip");
+const spreadWindow = document.querySelector("#spread-window");
 const spreadStatus = document.querySelector("#spread-status");
 const aboutPanel = document.querySelector("#about");
 const preorderPanel = document.querySelector("#preorder");
@@ -21,9 +23,10 @@ const mobileStoryTrigger = document.querySelector("#story-mobile-trigger");
 const preorderButton = document.querySelector("#preorder-open-secondary");
 const externalOrder = document.querySelector("#external-order");
 const orderPlaceholder = document.querySelector("#order-placeholder");
-const isCompactBook = window.matchMedia("(max-width: 760px)").matches;
+const isCompactBook = window.matchMedia("(max-width: 1024px), (hover: none) and (pointer: coarse)").matches;
 const initialBookPage = 0;
 const spreadCount = Math.ceil(pageImages.length / 2);
+const mobileSpreadCount = spreadCount + 1;
 
 let pageFlip = null;
 let mobileReader = null;
@@ -39,14 +42,33 @@ pageImages.forEach((src) => {
 });
 
 function updateSpreadStatus(pageIndex = 0) {
+  if (isCompactBook && pageIndex === 0) {
+    spreadStatus.textContent = "Обложка журнала";
+    return;
+  }
   const spreadIndex = isCompactBook ? pageIndex : Math.floor(pageIndex / 2);
-  spreadStatus.textContent = `Разворот ${spreadIndex + 1} из ${spreadCount}`;
+  const visibleSpreadIndex = isCompactBook ? spreadIndex : spreadIndex + 1;
+  spreadStatus.textContent = `Разворот ${visibleSpreadIndex} из ${spreadCount}`;
 }
 
 function renderMobileSpread(surface, spreadIndex) {
   const images = surface.querySelectorAll("img");
+  const isCover = spreadIndex === 0;
+  surface.classList.toggle("is-cover", isCover);
+  if (surface.classList.contains("mobile-page-base")) {
+    spreadWindow.classList.toggle("is-mobile-cover", isCover);
+  }
+
+  if (isCover) {
+    images[0].src = mobileCoverImage;
+    images[0].alt = "Фотообложка первого номера «Острова» без кальки";
+    images[1].removeAttribute("src");
+    images[1].alt = "";
+    return;
+  }
+
   images.forEach((image, side) => {
-    const pageIndex = spreadIndex * 2 + side;
+    const pageIndex = (spreadIndex - 1) * 2 + side;
     image.src = pageImages[pageIndex];
     image.alt = `Страница ${pageIndex + 1} журнала «Остров»`;
   });
@@ -63,14 +85,14 @@ function resetMobileReader() {
 
 function turnMobileSpread(step) {
   if (!mobileReader || mobileTurning) return;
-  const nextIndex = Math.max(0, Math.min(spreadCount - 1, mobileSpreadIndex + step));
+  const nextIndex = Math.max(0, Math.min(mobileSpreadCount - 1, mobileSpreadIndex + step));
   if (nextIndex === mobileSpreadIndex) return;
 
   mobileTurning = true;
+  mobileReader.turn.className = "mobile-page-turn";
   renderMobileSpread(mobileReader.base, nextIndex);
   renderMobileSpread(mobileReader.turn, mobileSpreadIndex);
   mobileReader.turn.querySelectorAll("img").forEach((image) => { image.alt = ""; });
-  mobileReader.turn.className = "mobile-page-turn";
   void mobileReader.turn.offsetWidth;
   mobileReader.turn.classList.add(step > 0 ? "is-turning-next" : "is-turning-prev");
   mobileSpreadIndex = nextIndex;
