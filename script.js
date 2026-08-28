@@ -830,9 +830,24 @@ function openPublication() {
 
     MOBILE/TABLET
 
-    Первый тап открывает журнал.
+    Первый тап снимает кальку и показывает чистую
+    обложку, второй открывает журнал.
     ===============================================
   */
+
+  if (
+    isCompactBook &&
+    body.dataset.bookState === "vellum"
+  ) {
+    body.dataset.bookState = "cover";
+
+    coverToggle.setAttribute(
+      "aria-label",
+      "Открыть журнал"
+    );
+
+    return;
+  }
 
   body.dataset.bookState =
     "open";
@@ -920,7 +935,9 @@ function closePublication() {
 
   coverToggle.setAttribute(
     "aria-label",
-    "Открыть журнал"
+    isCompactBook
+      ? "Показать обложку журнала"
+      : "Открыть журнал"
   );
 
 }
@@ -1319,5 +1336,7 @@ updateSpreadStatus(
 
 coverToggle.setAttribute(
   "aria-label",
-  "Открыть журнал"
+  isCompactBook
+    ? "Показать обложку журнала"
+    : "Открыть журнал"
 );
