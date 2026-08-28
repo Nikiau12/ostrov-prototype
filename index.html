@@ -7,14 +7,15 @@
     <meta name="description" content="Литературный объект «Остров», № 1. Осень—зима 2026." />
     <title>Остров — литературный объект № 1</title>
     <link rel="preload" href="assets/ostrov-cover-mockup.png" as="image" />
-    <link rel="preload" href="assets/ostrov-cover-69.jpg" as="image" />
+    <link rel="preload" href="assets/ostrov_cover%2069.jpg" as="image" />
+    <link rel="preload" href="assets/ostrov_cover%2079-78.jpg" as="image" />
     <link rel="preload" href="assets/cover-vellum-aug27-79-78.jpg" as="image" />
     <link rel="preload" href="assets/knife-cursor.png" as="image" />
     <link rel="preload" href="assets/ostrov-page-01.png?v=3" as="image" />
     <link rel="preload" href="assets/ostrov-page-02.png?v=3" as="image" />
     <link rel="preload" href="assets/fonts/AdobeTextPro-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/cofosans-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=67" />
+    <link rel="stylesheet" href="styles.css?v=68" />
   </head>
   <body data-book-state="vellum">
     <div class="ambient" aria-hidden="true"></div>
@@ -55,12 +56,24 @@
           <p class="issue-line">«<span class="issue-line__initial">О</span>стров» — периодическое литературное издание на русском языке родом из Венеции.</p>
 
           <div class="closed-book" id="closed-book">
-            <button class="cover-button" id="cover-toggle" type="button" aria-label="Открыть журнал">
-              <picture>
-                <source media="(hover: none), (pointer: coarse)" srcset="assets/ostrov-cover-69.jpg" />
-                <source media="(max-width: 1024px)" srcset="assets/ostrov-cover-69.jpg" />
+            <button class="cover-button" id="cover-toggle" type="button" aria-label="Показать обложку">
+              <picture class="desktop-cover-picture">
                 <img class="book-cover" src="assets/ostrov-cover-mockup.png" alt="Фотообложка первого номера «Острова»" />
               </picture>
+
+              <span class="compact-cover-stage" aria-hidden="true">
+                <img
+                  class="compact-cover-image compact-cover-image--vellum"
+                  src="assets/ostrov_cover%2079-78.jpg"
+                  alt=""
+                />
+                <img
+                  class="compact-cover-image compact-cover-image--cover"
+                  src="assets/ostrov_cover%2069.jpg"
+                  alt=""
+                />
+              </span>
+
               <span class="vellum" aria-hidden="true">
                 <img class="vellum__art" src="assets/cover-vellum-aug27-79-78.jpg" alt="" />
               </span>
@@ -116,6 +129,6 @@
     </section>
 
     <script src="assets/vendor/page-flip.browser.js"></script>
-    <script src="script.js?v=41"></script>
+    <script src="script.js?v=42"></script>
   </body>
 </html>

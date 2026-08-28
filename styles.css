@@ -101,6 +101,8 @@ body[data-book-state="open"] .object-stage { z-index: 7; }
 .cover-button:focus, .cover-button:focus-visible, .cover-button:-moz-focusring { outline: 0 !important; box-shadow: none; }
 .cover-button:focus-visible .book-cover { filter: drop-shadow(0 0 9px rgba(255,155,182,.34)); }
 .book-cover { position: relative; z-index: 1; display: block; width: 100%; height: auto; filter: none; }
+.compact-cover-stage { display: none; }
+.compact-cover-image { display: block; width: 100%; height: 100%; object-fit: contain; }
 .vellum { position: absolute; z-index: 2; top: 6.2%; left: 19.25%; width: 62.3%; height: 87.3%; overflow: hidden; background: #eee9e4; box-shadow: 7px 4px 13px rgba(20,18,18,.12); transform: translate3d(0,0,10px); transition: opacity .38s ease; }
 .vellum__art { display: block; width: 100%; height: 100%; object-fit: cover; }
 @media (hover: hover) and (pointer: fine) {
@@ -181,6 +183,10 @@ body.about-open .about, body.preorder-open .preorder { visibility: visible; opac
 .note-popover__bar p, .note-popover > p { margin: 0; }
 .note-popover__bar p { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
 .note-popover__bar button { width: auto; height: auto; padding: 0; border: 0; border-radius: 0; outline: 0; background: transparent; font-size: 22px; line-height: 1; cursor: pointer; }
+@keyframes compact-book-open {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 @keyframes drift { to { transform: translate3d(8%, -6%, 0); } }
 @keyframes issue-flicker { 0%, 37%, 43%, 71%, 100% { opacity: 1; } 40% { opacity: .88; } 41% { opacity: .97; } 74% { opacity: .93; } }
 @keyframes unfold-spread { 0% { opacity: 0; clip-path: inset(0 49% 0 49%); filter: brightness(.72) blur(1.5px); } 46% { opacity: .96; } 100% { opacity: 1; clip-path: inset(0); filter: brightness(1) blur(0); } }
@@ -225,10 +231,63 @@ body.about-open .about, body.preorder-open .preorder { visibility: visible; opac
 @media (max-width: 1024px) {
   .hero { grid-template-columns: 1fr; padding-top: 24px; }
   .object-stage { grid-column: 1; width: min(92vw, 980px, calc((100svh - 110px) * 1.393)); }
+  .desktop-cover-picture,
+  .vellum {
+    display: none;
+  }
+
+  .compact-cover-stage {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .compact-cover-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .28s ease;
+  }
+
+  body[data-book-state="vellum"] .compact-cover-image--vellum {
+    opacity: 1;
+  }
+
+  body[data-book-state="cover"] .compact-cover-image--cover {
+    opacity: 1;
+  }
+
+  body[data-book-state="vellum"] .closed-book,
+  body[data-book-state="cover"] .closed-book {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  body[data-book-state="cover"] .story-orbit {
+    opacity: 1;
+    pointer-events: none;
+  }
+
+  body[data-book-state="open"] .open-book {
+    animation: compact-book-open .28s ease both;
+  }
+
 .closed-book {
   width: min(38vw, 280px);
   aspect-ratio: 822 / 1180;
 }
+
+  .cover-button {
+    width: 100%;
+    height: 100%;
+  }
 
 
 
@@ -257,14 +316,6 @@ body.about-open .about, body.preorder-open .preorder { visibility: visible; opac
   
   body[data-book-state="open"] .object-stage { flex: 1; }
   .spread-window { aspect-ratio: 1644 / 1180; }
-  .book-cover {
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  max-height: none;
-  margin-inline: auto;
-  object-fit: cover;
-}
   .book-preorder { width: 100%; margin-top: 5px; }
   .book-preorder > p { max-width: 260px; }
   .order-button { width: 220px; max-width: 100%; }
