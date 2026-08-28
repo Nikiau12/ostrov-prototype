@@ -1,5 +1,9 @@
-const pageImages = Array.from({ length: 14 }, (_, index) =>
-  `assets/ostrov-page-${String(index + 1).padStart(2, "0")}.png?v=3`
+const pageImages = [
+  ...Array.from({ length: 10 }, (_, index) => index + 1),
+  13,
+  14,
+].map((pageNumber) =>
+  `assets/ostrov-page-${String(pageNumber).padStart(2, "0")}.png?v=3`
 );
 
 const body = document.body;
