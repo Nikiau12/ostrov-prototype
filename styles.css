@@ -942,6 +942,25 @@ body[data-book-state="open"]
 }
 
 
+.cover-credit {
+  width: min(100%, 300px);
+
+  margin: 0 0 8px;
+
+  color: rgba(242, 240, 233, .78);
+
+  font-family: var(--font-sans);
+
+  font-style: italic;
+
+  font-size: 11px;
+
+  line-height: 1.35;
+
+  letter-spacing: .02em;
+}
+
+
 .book-preorder > p {
   margin: 0 0 2px;
 
@@ -950,6 +969,17 @@ body[data-book-state="open"]
   letter-spacing: .08em;
 
   text-transform: uppercase;
+}
+
+
+.book-preorder > p.cover-credit {
+  margin: 0 0 8px;
+
+  font-size: 11px;
+
+  letter-spacing: .02em;
+
+  text-transform: none;
 }
 
 
