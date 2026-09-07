@@ -611,15 +611,23 @@ body[data-book-state="open"]
 }
 
 
-.book-cover {
+.desktop-cover-picture {
   position: relative;
+  aspect-ratio: 1236 / 1272;
+}
+
+.book-cover {
+  position: absolute;
+  top: 6.2%;
+  left: 19.25%;
 
   z-index: 1;
 
   display: block;
 
-  width: 100%;
-  height: auto;
+  width: 62.3%;
+  height: 87.3%;
+  object-fit: cover;
 }
 
 
