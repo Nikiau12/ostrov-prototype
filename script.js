@@ -1,13 +1,9 @@
-const pageImages = [
-  ...Array.from(
-    { length: 10 },
-    (_, index) => index + 1
-  ),
-  13,
-  14,
-].map(
+const pageImages = Array.from(
+  { length: 14 },
+  (_, index) => index + 1
+).map(
   (pageNumber) =>
-    `assets/ostrov-page-${String(pageNumber).padStart(2, "0")}.png?v=3`
+    `assets/ostrov-page-${String(pageNumber).padStart(2, "0")}.png?v=4`
 );
 
 
