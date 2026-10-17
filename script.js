@@ -56,17 +56,6 @@ const preorderButton =
     "#preorder-open-secondary"
   );
 
-const externalOrder =
-  document.querySelector(
-    "#external-order"
-  );
-
-const orderPlaceholder =
-  document.querySelector(
-    "#order-placeholder"
-  );
-
-
 /*
   Все устройства до 1024px
   используют compact reader.
@@ -1285,33 +1274,6 @@ document.addEventListener(
       clearStoryReveals();
 
     }
-
-  }
-);
-
-
-/* ======================================================
-   ORDER
-====================================================== */
-
-externalOrder.addEventListener(
-  "click",
-  (event) => {
-
-    if (
-      externalOrder.getAttribute(
-        "href"
-      ) !== "#"
-    ) {
-      return;
-    }
-
-
-    event.preventDefault();
-
-
-    orderPlaceholder.textContent =
-      "Добавим ссылку Interbok, как только она будет готова.";
 
   }
 );

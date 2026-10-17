@@ -82,7 +82,7 @@
 
     <link
       rel="stylesheet"
-      href="styles.css?v=75"
+      href="styles.css?v=77"
     />
   </head>
 
@@ -348,30 +348,12 @@
             </p>
 
             <button
-              class="order-button"
+              class="purchase-info-link"
               id="preorder-open-secondary"
               type="button"
             >
-
-              <span>Предзаказ</span>
-
-              <span
-                class="order-button__line"
-                aria-hidden="true"
-              ></span>
-
-              <span
-                class="order-button__marker"
-                aria-hidden="true"
-              >
-                ↗
-              </span>
-
+              Заказать
             </button>
-
-            <p>
-              Доставка по всему миру
-            </p>
 
           </div>
 
@@ -521,7 +503,7 @@
     <section
       class="overlay-panel preorder"
       id="preorder"
-      aria-labelledby="preorder-title"
+      aria-labelledby="purchase-title"
       aria-hidden="true"
     >
 
@@ -537,48 +519,39 @@
 
       <div class="preorder__content">
 
-        <h2 id="preorder-title">
-          Предзаказ
+        <h2 id="purchase-title">
+          Заказать
         </h2>
 
         <p>
-          Тираж журнала уже в работе у венецианских
-          печатников, и на него открыт предзаказ с доставкой
-          <em>по миру</em> через нашего партнёра —
+          Тираж журнала отпечатан и отправляется в магазины.
+          Сейчас «Остров» можно купить или заказать с доставкой в
           <a
             class="preorder__inline-link"
             href="https://interbok.se/index.php?route=product/product&amp;product_id=30172"
             target="_blank"
             rel="noopener noreferrer"
           >
-            книжный Interbok
+            Interbok
+          </a>,
+          <a
+            class="preorder__inline-link"
+            href="https://babelbooksberlin.com/collections/all/products/%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB-%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B2-1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Babel Books Berlin
+          </a>
+          и
+          <a
+            class="preorder__inline-link"
+            href="https://librairieduglobe.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Librarie du Globe
           </a>.
         </p>
-
-        <a
-          class="order-link order-link--light"
-          href="https://interbok.se/index.php?route=product/product&amp;product_id=30172"
-          id="external-order"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span>
-            Перейти в Interbok
-          </span>
-        </a>
-
-        <p class="preorder__secondary">
-          Для заказа в Венецию и Россию:
-          <a href="mailto:ostroov.my@gmail.com">
-            ostroov.my@gmail.com
-          </a>
-        </p>
-
-        <p
-          id="order-placeholder"
-          role="status"
-          aria-live="polite"
-        ></p>
 
       </div>
 
@@ -587,7 +560,7 @@
 
     <script src="assets/vendor/page-flip.browser.js"></script>
 
-    <script src="script.js?v=47"></script>
+    <script src="script.js?v=48"></script>
 
   </body>
 </html>

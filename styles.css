@@ -1001,99 +1001,29 @@ body[data-book-state="open"]
 }
 
 
-.order-button {
-  --marker-color: var(--neon);
-
-  position: relative;
-
-  display: block;
-
-  isolation: isolate;
-
-  width: min(100%, 225px);
-
-  height: 64px;
-
+.purchase-info-link {
+  margin: 2px 0 0;
   padding: 0;
-
-  color: var(--ink);
-  background: transparent;
 
   border: 0;
 
+  color: rgba(242, 240, 233, .88);
+  background: transparent;
+
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1.35;
+  letter-spacing: .08em;
+  text-decoration: none;
   text-transform: uppercase;
-
-  letter-spacing: .07em;
-
-  font-size: 13px;
 
   cursor: pointer;
 }
 
 
-.order-button > span:first-child {
-  position: absolute;
-
-  z-index: 3;
-
-  left: 50%;
-  top: 50%;
-
-  white-space: nowrap;
-
-  transform: translate(-50%, -50%);
-}
-
-
-.order-button__line {
-  position: absolute;
-
-  z-index: 1;
-
-  inset: 8px 5px 10px;
-
-  display: block;
-
-  border: 1px solid currentColor;
-
-  border-radius: 50%;
-
-  opacity: .48;
-
-  transform:
-    rotate(-7deg)
-    scale(1, .88);
-}
-
-
-.order-button__marker {
-  position: absolute;
-
-  z-index: 3;
-
-  right: 13px;
-  top: 13px;
-
-  display: grid;
-
-  place-items: center;
-
-  width: 15px;
-  height: 15px;
-
-  overflow: hidden;
-
-  color: transparent;
-
-  background: var(--marker-color);
-
-  border-radius:
-    52% 48% 56% 44% /
-    46% 57% 43% 54%;
-
-  font-size: 15px;
-
-  line-height: 1;
+.purchase-info-link:hover,
+.purchase-info-link:focus-visible {
+  color: var(--ink);
 }
 
 
@@ -2097,13 +2027,6 @@ body.preorder-open .preorder {
 
   .book-preorder > p {
     max-width: 260px;
-  }
-
-
-  .order-button {
-    width: 220px;
-
-    max-width: 100%;
   }
 
 
